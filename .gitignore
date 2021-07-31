@@ -17,7 +17,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
-
+/assets/user_directory/*
+/application/config/*
 
 ### CodeIgniter Patch ###
 
