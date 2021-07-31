@@ -29,13 +29,4 @@ class TelegramBot_model extends CI_Model
         $result = file_get_contents($url, false, $context);
         return $result;
     }
-
-    public function StartMessage()
-    {
-        date_default_timezone_set('Asia/Bangkok');
-        $MSG = 'SKP-KU! DEV CONSOLE V1.0 Initialized';
-        $MSG1 = 'BOT Initialized in 1.3690 seconds';
-        $this->SendTelegramMSGDEV($MSG);
-        $this->SendTelegramMSGDEV($MSG1);
-    }
 }
