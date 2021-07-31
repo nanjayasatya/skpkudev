@@ -29,7 +29,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?= base_url('bsosk/changepassword'); ?>">
                     <div class="dropdown-item-icon"><i class="fas fa-key"></i></div>
-                    Rubah Password
+                    Ubah Password
                 </a>
                 <a class="dropdown-item" data-toggle="modal" data-target="#LogoutModal">
                     <div class="dropdown-item-icon"><i class="fas fa-sign-out-alt"></i></div>

@@ -19,7 +19,7 @@
             <!-- Account page navigation-->
             <nav class="nav nav-borders">
                 <a class="nav-link active ml-0" href="<?= base_url('user'); ?>">Profil</a>
-                <a class="nav-link" href="<?= base_url('user/changepassword'); ?>">Rubah Password</a>
+                <a class="nav-link" href="<?= base_url('user/changepassword'); ?>">Ubah Password</a>
             </nav>
             <hr class="mt-0 mb-4" />
             <div class="row">

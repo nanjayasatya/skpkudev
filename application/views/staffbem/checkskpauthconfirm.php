@@ -11,7 +11,7 @@
                             </h1>
                             <div class="page-header-subtitle">Informasi Data SKP A Mahasiswa terkait</div>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Rubah data/Hapus data SKP A Mahasiswa</div>
+                        <div class="col-12 col-xl-auto mt-4">Ubah data/Hapus data SKP A Mahasiswa</div>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
         <div class="container mt-n10">
             <?= $this->session->flashdata('message'); ?>
             <?php foreach ($userdata as $uda) : ?>
-                      <?php endforeach; ?>
+            <?php endforeach; ?>
             <!-- TABEL SKP A -->
             <div class="row">
                 <div class="col-xl-4">
@@ -73,7 +73,7 @@
 
     </main>
 
-  
+
 
 
 

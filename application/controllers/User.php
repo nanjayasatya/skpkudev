@@ -72,7 +72,6 @@ class User extends CI_Controller
         $SEPARATOR = '====================';
         $this->telbot->SendTelegramMSGSKP($SEPARATOR);
         $this->telbot->SendTelegramMSGSKP($MSG);
-        
     }
 
     //Halaman Home (Data Mahasiswa)
@@ -132,7 +131,7 @@ class User extends CI_Controller
             $ia = 1;
             $ib = 1;
 
-            //Kalo mau rubah format PDFnya lewat sini ya :)
+            //Kalo mau ubah format PDFnya lewat sini ya :)
             //Liat Documentationnya FPDF.
             //Load Library PDF.
             $this->load->library('PDFE');
@@ -717,7 +716,7 @@ class User extends CI_Controller
         redirect('user/daftarvalidasi');
     }
 
-    //Halaman Rubah Password.
+    //Halaman Ubah Password.
     public function changePassword()
     {
         $data['title'] = 'Ubah Password';
@@ -774,7 +773,7 @@ class User extends CI_Controller
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <h5 class="alert-heading">Berhasil</h5>
-                    Password Berhasil dirubah! mohon diingat password yang baru.
+                    Password Berhasil diubah! mohon diingat password yang baru.
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

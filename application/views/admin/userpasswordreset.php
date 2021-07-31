@@ -9,7 +9,7 @@
                                 <div class="page-header-icon"><i class="fas fa-fw fa-database"></i></div>
                                 Reset Password Mahasiswa
                             </h1>
-                            <div class="page-header-subtitle">Merubah password Mahasiswa</div>
+                            <div class="page-header-subtitle">Mengubah password Mahasiswa</div>
                         </div>
                         <!--<div class="col-12 col-xl-auto mt-4">Reset password Mahasiswa</div>-->
                     </div>
@@ -86,7 +86,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <?= $this->session->flashdata('passwordresetmessage'); ?>
-                    <form action="<? base_url('user/changepassword');?>" method="post">
+                    <form action="<? base_url('user/changepassword'); ?>" method="post">
                         <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                         <!-- CHANGE PASSWORD MODAL -->
@@ -123,13 +123,13 @@
                 </div>
             </div>
             <div class="text-center mb-5">
-                            <a href="<?= base_url('admin/userdatabase'); ?>"  class="btn btn-lg btn-dark btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                                <span class="text" style="width:200px">Kembali</span>
-                            </a>
-                        </div>
+                <a href="<?= base_url('admin/userdatabase'); ?>" class="btn btn-lg btn-dark btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span class="text" style="width:200px">Kembali</span>
+                </a>
+            </div>
 
 
 

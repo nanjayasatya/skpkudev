@@ -387,7 +387,7 @@ class Bsosk extends CI_Controller
     }
     public function changePassword()
     {
-        $data['title'] = 'Rubah Password';
+        $data['title'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Password Lama', 'required|trim', [
@@ -441,7 +441,7 @@ class Bsosk extends CI_Controller
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <h5 class="alert-heading">Berhasil</h5>
-                    Password Berhasil dirubah! mohon diingat password yang baru.
+                    Password Berhasil diubah! mohon diingat password yang baru.
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

@@ -7,7 +7,7 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="user"></i></div>
-                                Mahasiswa - Rubah Password
+                                Mahasiswa - Ubah Password
                             </h1>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
 
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
-                            <form action="<? base_url('user/changepassword');?>" method="post">
+                            <form action="<? base_url('user/changepassword'); ?>" method="post">
                                 <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                                 <!-- CHANGE PASSWORD MODAL -->
@@ -32,7 +32,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="ChangePasswordModalLabel">Rubah Password</h5>
+                                                <h5 class="modal-title" id="ChangePasswordModalLabel">Ubah Password</h5>
                                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                             </div>
                                             <div class="modal-body">Apakah password yang dimasukkan sudah benar ?
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="text-center">
 
-                                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#ChangePasswordModal">Rubah Password</button>
+                                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#ChangePasswordModal">Ubah Password</button>
                                 </div>
                             </form>
 

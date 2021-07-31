@@ -317,7 +317,7 @@ class Admin extends CI_Controller
             $this->db->update('user');
             //$this->userdatabase->updateUser(); <-- dipake kalo functionnya udah jalan, check model
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Data berhasil dirubah!</div>');
+            Data berhasil diubah!</div>');
             redirect('admin/useredit/' . $this->uri->segment(3));
         }
     }
@@ -460,7 +460,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //Halaman Rubah Akses Role.
+    //Halaman Ubah Akses Role.
     public function changeAccess()
     {
         $menu_id = $this->input->post('menuId');
@@ -479,7 +479,7 @@ class Admin extends CI_Controller
         }
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Access berhasil dirubah!</div>');
+            Access berhasil diubah!</div>');
     }
 
     //Halaman News Manager (Berita).
@@ -648,11 +648,11 @@ class Admin extends CI_Controller
         $message = '<br><h3>Password Berhasil di Reset oleh Admin</h3></>
                     <br><p>Password baru anda : ' . $this->input->post('new_password1') . ' </p></br>
                     <br><h4 style="color:red">JANGAN DIBERIKAN KEPADA SIAPAPUN!</h4></br>
-                    <br><p>Untuk menjaga keamanan, langsung rubah password di laman rubah password.</p></br>
+                    <br><p>Untuk menjaga keamanan, langsung ubah password di laman ubah password.</p></br>
                     <br><a href="https://skpku.bemfkuwks.com/auth">Login SKP-KU!</a>
         ';
-        
-        
+
+
         $config = [
             'protocol' => 'ssmtp',
             'smtp_host' => 'ssl://mail.bemfkuwks.com',
@@ -711,7 +711,7 @@ class Admin extends CI_Controller
             $this->db->where('id', '1');
             $this->db->update('bem_status');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            BEM Status berhasil dirubah!</div>');
+            BEM Status berhasil diubah!</div>');
             redirect('admin/bemstatus/');
         }
     }
@@ -785,7 +785,7 @@ class Admin extends CI_Controller
 
     public function changePassword()
     {
-        $data['title'] = 'Rubah Password';
+        $data['title'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Password Lama', 'required|trim', [
@@ -839,7 +839,7 @@ class Admin extends CI_Controller
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <h5 class="alert-heading">Berhasil</h5>
-                    Password Berhasil dirubah! mohon diingat password yang baru.
+                    Password Berhasil diubah! mohon diingat password yang baru.
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -883,7 +883,7 @@ class Admin extends CI_Controller
 
             $this->session->set_flashdata('passwordresetmessage', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     <h5 class="alert-heading">Berhasil</h5>
-                    Password Berhasil dirubah! mohon diingat password yang baru.
+                    Password Berhasil diubah! mohon diingat password yang baru.
                     <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
