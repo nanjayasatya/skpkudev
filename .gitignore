@@ -18,6 +18,7 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 /assets/user_directory/*
+/assets/bsosk_directory/*
 /application/config/*
 
 ### CodeIgniter Patch ###
