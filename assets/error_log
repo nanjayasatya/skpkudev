@@ -1,0 +1,14 @@
+[15-Apr-2021 18:47:43 UTC] PHP Notice:  Undefined variable: title in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php on line 10
+[15-Apr-2021 18:47:43 UTC] PHP Stack trace:
+[15-Apr-2021 18:47:43 UTC] PHP   1. {main}() /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php:0
+[15-Apr-2021 18:47:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function base_url() in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php on line 11
+[15-Apr-2021 18:47:47 UTC] PHP Notice:  Undefined variable: title in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php on line 10
+[15-Apr-2021 18:47:47 UTC] PHP Stack trace:
+[15-Apr-2021 18:47:47 UTC] PHP   1. {main}() /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php:0
+[15-Apr-2021 18:47:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function base_url() in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/bemfkuwk/skpku.bemfkuwks.com/assets/index.php on line 11
