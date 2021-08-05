@@ -92,6 +92,9 @@ class User extends CI_Controller
         $data['title'] = 'Homepage';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
         $data['userfulldata'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->result_array();
+        $data['statskpbpending'] = $this->skp->GetStatListSKPDataBPending();
+        $data['statskpbrejected'] = $this->skp->GetStatListSKPDataBRejected();
+        $data['statskpbaccepted'] = $this->skp->GetStatListSKPDataBAccepted();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/user/user_sidebar', $data);

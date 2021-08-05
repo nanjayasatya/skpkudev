@@ -10,6 +10,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class SKPDatabase_model extends CI_Model
 {
+    //Function Statistic SKP B Pending (Mendapatkan seluruh data SKP B yang masih pending oleh Mahasiswa).
+    public function GetStatListSKPDataBPending()
+    {
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT COUNT(id)
+                   FROM `validation_skp_user_pending`
+                   WHERE `npm` = $npm
+                   AND `status` = 0
+        ";
+        return $this->db->query($query)->result_array();
+    }
+    //Function Statistic SKP B Rejected (Mendapatkan seluruh data SKP B yang masih ditolak oleh Mahasiswa).
+    public function GetStatListSKPDataBRejected()
+    {
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT COUNT(id)
+                   FROM `validation_skp_user_pending`
+                   WHERE `npm` = $npm
+                   AND `status` = 2
+        ";
+        return $this->db->query($query)->result_array();
+    }
+    //Function Statistic SKP B Accepted (Mendapatkan seluruh data SKP B yang sudah diterima oleh Mahasiswa).
+    public function GetStatListSKPDataBAccepted()
+    {
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT COUNT(id)
+                   FROM `validation_skp_user_pending`
+                   WHERE `npm` = $npm
+                   AND `status` = 1
+        ";
+        return $this->db->query($query)->result_array();
+    }
     //Function SKP B (Mendapatkan seluruh data SKP B oleh Mahasiswa).
     public function GetListSKPDataB()
     {

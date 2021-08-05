@@ -38,4 +38,63 @@
                     </div>
                 </div>
             </div>
+            <?php foreach ($statskpbpending as $skpbp) : ?>
+                <?php foreach ($statskpbrejected as $skpbr) : ?>
+                    <?php foreach ($statskpbaccepted as $skpba) : ?>
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card bg-warning text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="me-3">
+                                                <div class="text-white-75 small">SKP B dalam validasi</div>
+                                                <div class="text-lg fw-bold"><?= $skpbp['COUNT(id)']; ?></div>
+                                            </div>
+                                            <i class="text-white-50 fas fa-clock fa-3x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card bg-danger text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="me-3">
+                                                <div class="text-white-75 small">SKP B validasi ditolak</div>
+                                                <div class="text-lg fw-bold"><?= $skpbr['COUNT(id)']; ?></div>
+                                            </div>
+                                            <i class="text-white-50 fas fa-times fa-3x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4 mb-4">
+                                <div class="card bg-success text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="me-3">
+                                                <div class="text-white-75 small">SKP B tervalidasi</div>
+                                                <div class="text-lg fw-bold"><?= $skpba['COUNT(id)']; ?></div>
+                                            </div>
+                                            <i class="text-white-50 fas fa-check fa-3x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
     </main>
