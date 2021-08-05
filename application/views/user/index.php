@@ -28,8 +28,8 @@
                                         <?php foreach ($userfulldata as $us) : ?>
 
                                         <?php endforeach; ?>
-                                        <h1 class="text-primary">Selamat Datang <?= $us['name']; ?>!</h1>
-                                        <p class="text-gray-700 mb-0">Pastikan <a href="<?= base_url('user/profile'); ?>">profil </a>kamu sudah benar ya!</p>
+                                        <h1 class="text-primary">Selamat Datang <?= $us['name']; ?></h1>
+                                        <p class="text-gray-700 mb-0">Pastikan <a href="<?= base_url('user/profile') ?>">profil</a> sudah benar ya!</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" src="<?= base_url('vendor/sb/dist/assets/img/freepik/at-work-pana.svg'); ?>" style="max-width: 26rem;" /></div>
