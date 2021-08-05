@@ -158,7 +158,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-trash"></i>
                                     </span>
-                                    <span class="text" style="width:180px">Batal Ajukan Validasi</span>
+                                    <span class="text" style="width:180px">Batal Validasi</span>
                                 </a>
 
                                 <button type="button" data-toggle="modal" data-target="#areyousurevalidateModal" class="btn btn-success btn-icon-split mt-2">

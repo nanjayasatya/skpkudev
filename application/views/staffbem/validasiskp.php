@@ -49,7 +49,7 @@
                                     <td><?= $lv['posisi']; ?></td>
                                     <td><?= $lv['bobot']; ?></td>
                                     <?php if ($lv['status'] == 0) {
-                                        $vali = '<p style="color:orange">Menunggu Validasi</p>';
+                                        $vali = '<div class="badge bg-warning text-white rounded-pill">Menunggu Validasi</div>';
                                     }
 
                                     ?>

@@ -45,6 +45,20 @@
                         <tbody>
                             <?php $i = 1; ?>
                             <?php foreach ($skpuserpendingvalidation as $sud) : ?>
+                                <div class="modal fade" id="areyousureDeleteValidationModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="areyousureDeleteValidationModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="areyousureDeleteValidationModalLabel">Batal Ajukan Validasi SKP</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">Apakah yakin membatalkan validasi SKP?
+
+                                            </div>
+                                            <div class="modal-footer"><button class="btn btn-dark" type="button" data-dismiss="modal">Batal</button><a href="<?= base_url('user/deletevalidation/') . $sud['id']; ?>" class="btn btn-danger">Lanjutkan</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <tr>
                                     <th scope="row"><?= $i ?></th>
                                     <!-- <td><?= $sud['tipe']; ?></td> -->
@@ -53,43 +67,52 @@
                                     <td><?= $sud['posisi']; ?></td>
                                     <td><?= $sud['bobot']; ?></td>
                                     <?php if ($sud['status'] == 0) {
-                                        $vali = '<p style="color:orange">Menunggu Validasi</p>';
+                                        $vali = '<div class="badge bg-warning text-white rounded-pill">Menunggu Validasi</div>';
                                         $link = base_url('user/editskpdetails/') . $sud['id'];
-                                        $class = 'btn btn-warning btn-icon-split';
-                                        $btnname = 'Ubah Data';
-                                        $split_icons = 'fas fa-exclamation-triangle';
+                                        $deletevalidation = base_url('user/deletevalidation/') . $sud['id'];
+                                        $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>';
                                     } else {
                                         if ($sud['status'] == 1) {
-                                            $vali = '<p style="color:green">Validasi Diterima</p>';
+                                            $vali = '<div class="badge bg-green text-white rounded-pill">Validasi Diterima</div>';
                                             $link = '#';
-                                            $class = '';
-                                            $btnname = '-';
-                                            $split_icons = '';
+                                            $button = '-';
                                         } else {
                                             if ($sud['status'] == 2) {
-                                                $vali = '<p style="color:red">Validasi Ditolak</p>';
+                                                $vali = '<div class="badge bg-red text-white rounded-pill">Validasi Ditolak</div>';
                                                 $link = base_url('user/editskpdetails/') . $sud['id'];
-                                                $class = 'btn btn-warning btn-icon-split';
-                                                $btnname = 'Ubah Data';
-                                                $split_icons = 'fas fa-exclamation-triangle';
+                                                $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>';
                                             }
                                         }
                                     }
 
                                     ?>
-                                    <td><?= $vali ?></td>
+                                    <td>
+                                        <div class="text-center"><?= $vali ?></div>
+                                    </td>
 
 
                                     <td>
                                         <!-- <a href="<?= $link ?>" class="<?= $class ?>"><?= $btnname ?> -->
                                         <div class="text-center">
-                                            <a href="<?= $link ?>" class="<?= $class ?>">
-                                                <span class="icon text-white-10">
-                                                    <i class="<?= $split_icons ?>"></i>
-                                                </span>
-                                                <span class="text" style="width:120px"><?= $btnname ?></span>
-                                            </a>
-                                            </a>
+                                            <div class="dropdown">
+                                                <?= $button ?>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="<?= $link ?>">
+                                                        <div class="dropdown-item-icon">
+                                                            <i class="fas fa-edit"></i>
+                                                        </div>Ubah Data
+                                                    </a>
+                                                    <a class="dropdown-item" href="<?= base_url('user/daftarvalidasi/') . $sud['id']; ?>" data-toggle="modal" data-target="#areyousureDeleteValidationModal">
+                                                        <div class="dropdown-item-icon">
+                                                            <i class="fas fa-trash"></i>
+                                                        </div>Batal Validasi
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
 
