@@ -124,7 +124,7 @@
                                         <?= form_error('bobot', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <!--<img id="output" src="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="img-thumbnail"></img> -->
-                                    <a target="_blank" href="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>"  class="btn btn-success btn-icon-split mt-2">
+                                    <a target="_blank" href="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="btn btn-success btn-icon-split mt-2">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-eye"></i>
                                         </span>
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-lg">
+                            <div class="col-xl text-center">
                                 <a href="<?= base_url('user/daftarvalidasi'); ?>" class="btn btn-dark btn-icon-split mt-2">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-arrow-left"></i>
