@@ -10,10 +10,10 @@
 
 <?php
 if (empty($sdB)) {
-  $sdB = "0";
+    $sdB = "0";
 }
 if (empty($sdA)) {
-  $sdA = "0";
+    $sdA = "0";
 }
 ?>
 <div id="layoutSidenav_content">
@@ -125,7 +125,7 @@ if (empty($sdA)) {
                 </div>
             </div>
 
-            <!-- TOTAL SKP -->
+            <!-- TOTAL POIN SKP -->
             <div class="justify-content-center">
                 <div class="row h-100 justify-content-center align-items-center">
                     <div class="col-xl-3 col-md-6 mb-4">
@@ -133,7 +133,7 @@ if (empty($sdA)) {
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <div class="small font-weight-bold text-success mb-1">Total SKP A</div>
+                                        <div class="small font-weight-bold text-success mb-1">Total Poin SKP A</div>
                                         <div class="h5"><?= $sdA; ?></div>
 
                                     </div>
@@ -147,7 +147,7 @@ if (empty($sdA)) {
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <div class="small font-weight-bold text-success mb-1">Total SKP B</div>
+                                        <div class="small font-weight-bold text-success mb-1">Total Poin SKP B</div>
 
                                         <div class="h5"><?= $sdB; ?></div>
 
@@ -168,7 +168,7 @@ if (empty($sdA)) {
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="<?= $card_info ?>">
                             <div class="card-body">
-                                <div class="text-white">Total Seluruh SKP</div>
+                                <div class="text-white">Total Poin Seluruh SKP</div>
                                 <div class="mb-2">
                                     <span class="display-5 text-white"><?= $sdB + $sdA; ?>/<?= $skp_req['skp_min']; ?></span>
 
@@ -188,7 +188,7 @@ if (empty($sdA)) {
                     <span class="icon text-white-10">
                         <i class="fas fa-print"></i>
                     </span>
-                    <span class="text" style="width:180px">Print Total SKP</span>
+                    <span class="text" style="width:220px">Print Total Poin SKP</span>
                 </a>
             </div>
         </div>
