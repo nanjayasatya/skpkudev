@@ -11,7 +11,7 @@
     <meta name="author" content="" />
     <!--<title><?= 'SKP-KU - ' . $title; ?></title>-->
     <title><?= $title . ' - SKP-KU'; ?></title>
-    <link href="<?= base_url('vendor/sb/dist/css/mainstyles.css'); ?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/mainstyles.css'); ?>" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
