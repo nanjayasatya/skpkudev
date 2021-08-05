@@ -9,7 +9,7 @@
     <meta name="author" content="" />
     <!--<title><?= 'SKP-KU - ' . $title; ?></title> -->
     <title><?= $title . ' - SKP-KU'; ?></title>
-    <link href="<?= base_url('assets/mainstyles.css'); ?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/mainstyles.css'); ?>" rel="stylesheet" />
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous"></script>
     <!-- FAVICON -->
