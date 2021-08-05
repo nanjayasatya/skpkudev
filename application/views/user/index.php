@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <a class="text-white stretched-link" href="<?= base_url('user/daftarvalidasi'); ?>">Lihat</a>
                                         <div class="text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <a class="text-white stretched-link" href="<?= base_url('user/daftarvalidasi'); ?>">Lihat</a>
                                         <div class="text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">Lihat</a>
+                                        <a class="text-white stretched-link" href="<?= base_url('user/skpdatabase'); ?>">Lihat</a>
                                         <div class="text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
