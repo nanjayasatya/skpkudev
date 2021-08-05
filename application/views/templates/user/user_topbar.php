@@ -27,6 +27,10 @@
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?= base_url('user/profile'); ?>">
+                    <div class="dropdown-item-icon"><i class="fas fa-user"></i></div>
+                    Profil
+                </a>
                 <a class="dropdown-item" href="<?= base_url('user/changepassword'); ?>">
                     <div class="dropdown-item-icon"><i class="fas fa-key"></i></div>
                     Ubah Password

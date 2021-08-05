@@ -17,11 +17,14 @@
         <!-- Main page content-->
         <div class="container mt-4">
             <!-- Account page navigation-->
+            <nav class="nav nav-borders">
+                <a class="nav-link" href="<?= base_url('user/profile'); ?>">Profil</a>
+                <a class="nav-link active ml-0" href="<?= base_url('user/changepassword'); ?>">Ubah Password</a>
+            </nav>
+            <hr class="mt-0 mb-4" />
             <div class="row">
-
                 <div class="col-xl-8">
                     <div class="card mb-4">
-
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
                             <form action="<? base_url('user/changepassword'); ?>" method="post">

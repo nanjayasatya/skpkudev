@@ -715,7 +715,7 @@ class User extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('validation_skp_user_pending');
         $this->session->set_flashdata('deletevalidasiberhasil', '<div class="alert alert-success" role="alert">
-        Pengajuan SKP berhasil dibatalkan!</div>');
+        Validasi SKP berhasil dibatalkan!</div>');
         redirect('user/daftarvalidasi');
     }
 
