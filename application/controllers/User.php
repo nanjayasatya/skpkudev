@@ -292,8 +292,8 @@ class User extends CI_Controller
                 $pdf->Ln(5);
                 $pdf->Cell(275, 10, 'Gubernur BEM FK UWKS ', 0, 0, 'C');
                 $pdf->Ln(30);
-                $pdf->Image($bs['gubem_ttd'], 140, 139, 14);
-                $pdf->Image($bs['gubem_stampel'], 140, 137, 30);
+                $pdf->Image($bs['gubem_ttd'], 125, 131, 40);
+                $pdf->Image($bs['gubem_stampel'], 140, 138, 30);
                 $pdf->SetFont('Metropolis', '', 12);
                 $pdf->Cell(275, 10, $bs['gubem_name'], 0, 0, 'C');
                 $pdf->Ln(5);
