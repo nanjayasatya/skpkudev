@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VP3JM977YN"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-VP3JM977YN');
-</script>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,5 +33,18 @@
     <meta name="msapplication-square150x150logo" content="assets/favicon/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="assets/favicon/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="assets/favicon/mstile-310x310.png" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VP3JM977YN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-VP3JM977YN');
+    </script>
 
 </head>
