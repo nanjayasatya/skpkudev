@@ -55,13 +55,18 @@
                                     ?>
                                     <td><?= $vali ?></td>
                                     <td>
-                                        <!-- <a href="<?= base_url('staffbem/detailvalidasi/') . $lv['id']; ?>" class="btn btn-danger">Data Lengkap</a> -->
-                                        <a href="<?= base_url('staffbem/detailvalidasi/') . $lv['id']; ?>" class="btn btn-purple btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-info-circle"></i>
-                                            </span>
-                                            <span class="text" style="width:120px">Data Lengkap</span>
-                                        </a>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="<?= base_url('staffbem/detailvalidasi/') . $lv['id']; ?>">
+                                                    <div class="dropdown-item-icon">
+                                                        <i class="fas fa-edit"></i>
+                                                    </div>Data Lengkap
+                                                </a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
