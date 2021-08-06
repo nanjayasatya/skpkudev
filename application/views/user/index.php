@@ -32,7 +32,7 @@
                                         <p class="text-gray-700 mb-0">Pastikan <a href="<?= base_url('user/profile') ?>">profil</a> sudah benar ya!</p>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" src="<?= base_url('vendor/sb/dist/assets/img/freepik/at-work-pana.svg'); ?>" style="max-width: 26rem;" /></div>
+                                <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" src="<?= base_url('assets/img/res/main.svg'); ?>" style="max-width: 12rem;" /></div>
                             </div>
                         </div>
                     </div>
