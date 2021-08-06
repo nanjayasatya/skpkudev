@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- HEADER -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VP3JM977YN"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-VP3JM977YN');
+</script>
 
 <head>
     <meta charset="utf-8" />
