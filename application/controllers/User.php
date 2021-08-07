@@ -63,9 +63,9 @@ class User extends CI_Controller
         date_default_timezone_set('Asia/Bangkok');
         $MSG = "&#10071; Informasi Validasi SKP Baru
         \n&#128273 NPM: " . $this->input->post('npm') . "
-        \n&#128221; Keterangan: " . $this->input->post('event_data') . "
-        \n&#127941; Posisi: " . $this->input->post('event_posisi') . "
-        \n&#128345; Tahun: " . $this->input->post('event_year') . "
+        \n&#128221; Keterangan: " . $this->input->post('event') . "
+        \n&#127941; Posisi: " . $this->input->post('posisi') . "
+        \n&#128345; Tahun: " . $this->input->post('tahun') . "
         \n&#128308; Bobot: " . $this->input->post('bobot') . "
         \n&#128345; Waktu pengajuan: " . date("d-M-Y h:i:s A") . "
         \nSedang menunggu untuk di validasi oleh pihak INTERNAL.";
@@ -535,15 +535,15 @@ class User extends CI_Controller
         $skpdata['eventyear'] = $this->db->get('event_year')->result_array();
         $skpdata['eventposisi'] = $this->db->get('event_position')->result_array();
 
-        $this->form_validation->set_rules('event_data', 'Event_data', 'required|trim', [
+        $this->form_validation->set_rules('event', 'Event', 'required|trim', [
             'required' => 'Kegiatan harus dipilih!'
         ]);
 
-        $this->form_validation->set_rules('event_year', 'Event_year', 'required|trim', [
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim', [
             'required' => 'Tahun harus dipilih!'
         ]);
 
-        $this->form_validation->set_rules('event_posisi', 'Event_posisi', 'required|trim', [
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required|trim', [
             'required' => 'Posisi harus dipilih!'
         ]);
 
@@ -577,9 +577,9 @@ class User extends CI_Controller
                             'name' => $this->input->post('name'),
                             'npm' => $this->session->userdata('npm'),
                             'tipe' => 'B',
-                            'event' => $this->input->post('event_data'),
-                            'tahun' => $this->input->post('event_year'),
-                            'posisi' => $this->input->post('event_posisi'),
+                            'event' => $this->input->post('event'),
+                            'tahun' => $this->input->post('tahun'),
+                            'posisi' => $this->input->post('posisi'),
                             'bobot' => $this->input->post('bobot'),
                             'skp_proof' => $skp_proof,
                             'status' => '0'

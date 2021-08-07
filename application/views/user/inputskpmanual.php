@@ -38,49 +38,51 @@
                             </div>
                             <div class="form-group col-lg-7 text-center mt-3">
                                 <label for="event"><strong>Nama Kegiatan/Keterangan</strong></label>
-                                <input type="text" class="form-control" id="event_data" name="event_data" placeholder="" maxlength="70" value="<?= set_value('event_data'); ?>">
+                                <input type="text" class="form-control" id="event" name="event" placeholder="" maxlength="70" value="<?= set_value('event'); ?>">
                                 <?= form_error('event', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
-                           <!-- <div class="form-group col-lg-7 text-center">
+                            <!-- <div class="form-group col-lg-7 text-center">
                                 <label for="posisi"><strong>Posisi</strong></label>
                                 <input type="text" class="form-control" id="event_posisi" name="event_posisi" placeholder="" value="<?= set_value('event_posisi'); ?>">
                                 <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div> -->
                             <div class="form-group col-lg-7 text-center">
-                                        <label for="event" class="font-weight-700">Posisi</label>
-                                        <select name="event_posisi" id="event_posisi" class="form-control">
+                                <label for="event" class="font-weight-700">Posisi</label>
+                                <select name="posisi" id="posisi" class="form-control">
 
-                                            <option value="<?= set_value('event_posisi'); ?>"><?= set_value('event_posisi'); ?></option>
+                                    <option value="<?= set_value('posisi'); ?>"><?= set_value('posisi'); ?></option>
 
-                                            <?php foreach ($eventposisi as $ep) : ?>
-                                                <option value="<?= $ep['posisi'] ?>"> <?= $ep['posisi'] ?> </option>
-                                            <?php endforeach; ?>
+                                    <?php foreach ($eventposisi as $ep) : ?>
+                                        <option value="<?= $ep['posisi'] ?>"> <?= $ep['posisi'] ?> </option>
+                                    <?php endforeach; ?>
 
-                                        </select>
-                                        <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
-                                    </div>
-                            <div class="form-group col-lg-7 text-center">
-                                <label for="tahun"><strong>Tahun</strong></label>
-                                <input type="number" class="form-control" id="event_year" name="event_year" placeholder="" value="<?= set_value('event_year'); ?>">
-                                <?= form_error('tahun', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </select>
+                                <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
-                            <!--<div class="form-group col-lg-7 text-center">
-                                <label for="event_year" class="font-weight-700">Tahun Pelaksanaan</label>
-                                <div class="input-group date" id="event_year" name="event_year" data-target-input="nearest">
-                                    <input type="number" id="event_year" name="event_year" class="form-control datetimepicker-input" data-target="#tahun" />
-                                    <div class="input-group-append" data-target="#event_year" data-toggle="datetimepicker">
+                            <div class="form-group col-lg-7 text-center mt-3">
+                                <label for="tahun" class="font-weight-700">Tahun</label>
+                                <div class="input-group date" id="tahun" name="tahun" data-target-input="nearest">
+                                    <input type="number" id="tahun" name="tahun" class="form-control datetimepicker-input" data-target="#tahun" value="<?= set_value('tahun'); ?>" />
+                                    <div class="input-group-append" data-target="#tahun" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
-                            </div> -->
-                            <?= form_error('event_year', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <?= form_error('tahun', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $('#tahun').datetimepicker({
+                                            format: 'YYYY'
+                                        });
+                                    });
+                                </script>
+                            </div>
 
                             <div class="form-group col-lg-7 text-center">
                                 <label for="bobot"><strong>Bobot</strong></label>
                                 <input type="number" class="form-control" id="bobot" name="bobot" placeholder="" value="<?= set_value('bobot'); ?>">
                                 <?= form_error('bobot', '<small class="text-danger pl-3">', '</small>'); ?>
                                 <div class="mt-2">
-                                <a class="text-success" target="_blank" href="<?= base_url('assets/PEDOMAN%20SKP%20REVISI%202021.pdf'); ?>">Pedoman SKP FK UWKS 2021</a>
+                                    <a class="text-success" target="_blank" href="<?= base_url('assets/PEDOMAN%20SKP%20REVISI%202021.pdf'); ?>">Pedoman SKP FK UWKS 2021</a>
                                 </div>
                             </div>
                             <!--<div class="text-center col-lg-7">
@@ -102,7 +104,7 @@
                                 <span class="text" style="width:150px">Validasi SKP</span>
                             </button>
                             <br>
-                            <a  href="<?= base_url('user/daftarvalidasi');?>" class="btn btn-lg btn-dark btn-icon-split">
+                            <a href="<?= base_url('user/daftarvalidasi'); ?>" class="btn btn-lg btn-dark btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-arrow-left"></i>
                                 </span>
@@ -128,14 +130,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(function() {
-            $('#event_year').datetimepicker({
-                format: 'YYYY'
-            });
-        });
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
     <script>
         $('.custom-file-input').on('change', function() {
             let fileName = $(this).val().split('\\').pop();

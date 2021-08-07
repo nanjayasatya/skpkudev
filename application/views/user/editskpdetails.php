@@ -101,11 +101,23 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tahun" class="font-weight-700">Tahun</label>
-                                        <input type="number" class="form-control" id="tahun" name="tahun" placeholder="" value="<?= $dv['tahun']; ?>">
+                                        <div class="input-group date" id="tahun" name="tahun" data-target-input="nearest">
+                                            <input type="number" id="tahun" name="tahun" class="form-control datetimepicker-input" data-target="#tahun" value="<?= $dv['tahun']; ?>" />
+                                            <div class="input-group-append" data-target="#tahun" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
                                         <?= form_error('tahun', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <script type="text/javascript">
+                                            $(function() {
+                                                $('#tahun').datetimepicker({
+                                                    format: 'YYYY'
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                     <div class="form-group">
-                                        <label for="event" class="font-weight-700">Posisi</label>
+                                        <label for="posisi" class="font-weight-700">Posisi</label>
                                         <select name="posisi" id="posisi" class="form-control">
 
                                             <option value="<?= $dv['posisi']; ?>"><?= $dv['posisi']; ?></option>
