@@ -23,7 +23,7 @@
               <div class="text-center mt-4">
                 <img class="img-fluid p-5" src="<?= base_url('assets/img/errorpages/404.svg'); ?>" alt="" />
                 <p class="lead">Halaman yang kamu cari tidak ada</p>
-                <a class="text-arrow-icon" href="<?= base_url(); ?>">
+                <a class="text-arrow-icon" href="<?= base_url('notfound/return'); ?>">
                   <i class="ml-0 mr-2 fas fa-arrow-left"></i>
                   Kembali
                 </a>
@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col-md-6 small">Copyright &copy; SKP-KU <a href="https://bemfkuwks.com">BEM FK UWKS</a> <?= date('Y'); ?></div>
             <div class="col-md-6 text-md-right small">
-                <p>Proudly Designed & Developed by Nanjaya Satya</p>
+              <p>Proudly Designed & Developed by Nanjaya Satya</p>
             </div>
           </div>
         </div>
