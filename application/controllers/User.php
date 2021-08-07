@@ -175,7 +175,7 @@ class User extends CI_Controller
             $pdf->SetFont('Metropolis-Bold', '', 14);
             $pdf->Cell(276, 5, 'SKP A', 0, 0, 'C');
             $pdf->Ln(10);
-            $pdf->SetFont('Metropolis-Bold', '', 12);
+            $pdf->SetFont('Metropolis-Bold', '', 11);
             $pdf->Cell(10, 10, 'No', 1, 0, 'C');
             $pdf->Cell(190, 10, 'Keterangan', 1, 0, 'C');
             $pdf->Cell(15, 10, 'Tahun', 1, 0, 'C');
@@ -183,7 +183,7 @@ class User extends CI_Controller
             $pdf->Cell(15, 10, 'Bobot', 1, 0, 'C');
             $pdf->Ln();
             foreach ($skpdataA as $ska) {
-                $pdf->SetFont('Metropolis', '', 12);
+                $pdf->SetFont('Metropolis', '', 11);
                 $pdf->Cell(10, 10, $ia++, 1, 0, 'C');
                 $pdf->Cell(190, 10, $ska['event'], 1, 0, 'C');
                 $pdf->Cell(15, 10, $ska['tahun'], 1, 0, 'C');
@@ -196,7 +196,7 @@ class User extends CI_Controller
             $pdf->SetFont('Metropolis-Bold', '', 14);
             $pdf->Cell(276, 5, 'SKP B', 0, 0, 'C');
             $pdf->Ln(10);
-            $pdf->SetFont('Metropolis-Bold', '', 12);
+            $pdf->SetFont('Metropolis-Bold', '', 11);
             $pdf->Cell(10, 10, 'No', 1, 0, 'C');
             $pdf->Cell(190, 10, 'Keterangan', 1, 0, 'C');
             $pdf->Cell(15, 10, 'Tahun', 1, 0, 'C');
@@ -204,7 +204,7 @@ class User extends CI_Controller
             $pdf->Cell(15, 10, 'Bobot', 1, 0, 'C');
             $pdf->Ln();
             foreach ($skpdataB as $skb) {
-                $pdf->SetFont('Metropolis', '', 12);
+                $pdf->SetFont('Metropolis', '', 11);
                 $pdf->Cell(10, 10, $ib++, 1, 0, 'C');
                 $pdf->Cell(190, 10, $skb['event'], 1, 0, 'C');
                 $pdf->Cell(15, 10, $skb['tahun'], 1, 0, 'C');
