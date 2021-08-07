@@ -11,7 +11,7 @@
                             </h1>
                             <div class="page-header-subtitle">Ubah data SKP sebelum di validasi oleh BEM</div>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Pastikan sekali lagi data yang diinput sudah benar!</div>
+                        <!--<div class="col-12 col-xl-auto mt-4">Pastikan sekali lagi data yang diinput sudah benar!</div>-->
                     </div>
                 </div>
             </div>
