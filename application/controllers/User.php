@@ -706,17 +706,23 @@ class User extends CI_Controller
     //Function Delete Validation (Menghapus data validasi yang diajukan oleh mahasiswa).
     public function deletevalidation()
     {
-        $id =  $this->uri->segment(3);
-        $image = $this->db->get_where('validation_skp_user_pending', ['id' => $this->uri->segment(3)])->row_array();
-        $npm = $this->session->userdata('npm');
-        $skp_proof = $image['skp_proof'];
-        $gabungan = $npm . '/' . $skp_proof;
-        unlink(FCPATH . 'assets/user_directory/' . $gabungan);
-        $this->db->where('id', $id);
-        $this->db->delete('validation_skp_user_pending');
-        $this->session->set_flashdata('deletevalidasiberhasil', '<div class="alert alert-success" role="alert">
-        Validasi SKP berhasil dibatalkan!</div>');
-        redirect('user/daftarvalidasi');
+        $dataskp = $this->db->get_where('validation_skp_user_pending', ['id' => $this->uri->segment(3)])->row_array();
+        if ($dataskp['status'] == 1) {
+            redirect('user/daftarvalidasi');
+        } else if ($dataskp['npm'] != $this->session->userdata('npm')) {
+            redirect('user/daftarvalidasi');
+        } else {
+            $id =  $this->uri->segment(3);
+            $npm = $this->session->userdata('npm');
+            $skp_proof = $dataskp['skp_proof'];
+            $gabungan = $npm . '/' . $skp_proof;
+            unlink(FCPATH . 'assets/user_directory/' . $gabungan);
+            $this->db->where('id', $id);
+            $this->db->delete('validation_skp_user_pending');
+            $this->session->set_flashdata('deletevalidasiberhasil', '<div class="alert alert-success" role="alert">
+            Validasi SKP berhasil dibatalkan!</div>');
+            redirect('user/daftarvalidasi');
+        }
     }
 
     //Halaman Ubah Password.
