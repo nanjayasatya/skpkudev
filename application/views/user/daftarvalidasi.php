@@ -11,7 +11,7 @@
                             </h1>
                             <div class="page-header-subtitle">Informasi status validasi SKP B mahasiswa</div>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Tekan "Ubah Data" untuk mengubah data SKP B yang akan di validasi</div>
+                        <div class="col-12 col-xl-auto mt-4"></div>
                     </div>
                 </div>
             </div>

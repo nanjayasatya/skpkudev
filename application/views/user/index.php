@@ -9,9 +9,8 @@
                                 <div class="page-header-icon"><i class="fas fa-home"></i></div>
                                 Homepage
                             </h1>
-                            <div class="page-header-subtitle">Portal SKPKU BEM FK UWKS</div>
+                            <div class="page-header-subtitle">Portal SKP-KU BEM FK UWKS</div>
                         </div>
-
                     </div>
                 </div>
             </div>

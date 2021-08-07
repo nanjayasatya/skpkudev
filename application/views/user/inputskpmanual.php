@@ -7,11 +7,10 @@
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i class="fas fa-upload"></i></div>
-                                Input Data SKP B (Manual)
+                                Input Data SKP B
                             </h1>
-                            <div class="page-header-subtitle">Input Data SKP B untuk di validasi dan masuk database BEM (Manual)</div>
+                            <div class="page-header-subtitle">Form input data & validasi SKP B mahasiswa</div>
                         </div>
-                        <div class="col-12 col-xl-auto mt-4">Input SKP B untuk acara yang tidak ada di database BEM</div>
                     </div>
                 </div>
             </div>
@@ -96,7 +95,7 @@
                             </div>
 
                         </div>
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-3 mb-4">
                             <button type="button" data-toggle="modal" data-target="#areyousureModal" class="btn btn-lg btn-success btn-icon-split mb-2">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-check"></i>
