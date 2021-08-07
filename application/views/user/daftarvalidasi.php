@@ -45,20 +45,6 @@
                         <tbody>
                             <?php $i = 1; ?>
                             <?php foreach ($skpuserpendingvalidation as $sud) : ?>
-                                <div class="modal fade" id="areyousureDeleteValidationModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="areyousureDeleteValidationModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="areyousureDeleteValidationModalLabel">Batal Ajukan Validasi SKP</h5>
-                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                            </div>
-                                            <div class="modal-body">Apakah yakin membatalkan validasi SKP?
-
-                                            </div>
-                                            <div class="modal-footer"><button class="btn btn-dark" type="button" data-dismiss="modal">Batal</button><a href="<?= base_url('user/deletevalidation/') . $sud['id']; ?>" class="btn btn-danger">Lanjutkan</a></div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <tr>
                                     <th scope="row"><?= $i ?></th>
                                     <!-- <td><?= $sud['tipe']; ?></td> -->
@@ -73,11 +59,13 @@
                                         $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>';
+                                        $delete = base_url('user/deletevalidation/') . $sud['id'];
                                     } else {
                                         if ($sud['status'] == 1) {
                                             $vali = '<div class="badge bg-green text-white rounded-pill">Validasi Diterima</div>';
                                             $link = '#';
                                             $button = '-';
+                                            $delete = '-';
                                         } else {
                                             if ($sud['status'] == 2) {
                                                 $vali = '<div class="badge bg-red text-white rounded-pill">Validasi Ditolak</div>';
@@ -85,6 +73,7 @@
                                                 $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>';
+                                                $delete = base_url('user/deletevalidation/') . $sud['id'];
                                             }
                                         }
                                     }
@@ -96,7 +85,6 @@
 
 
                                     <td>
-                                        <!-- <a href="<?= $link ?>" class="<?= $class ?>"><?= $btnname ?> -->
                                         <div class="text-center">
                                             <div class="dropdown">
                                                 <?= $button ?>
@@ -106,7 +94,7 @@
                                                             <i class="fas fa-edit"></i>
                                                         </div>Ubah Data
                                                     </a>
-                                                    <a class="dropdown-item" href="<?= base_url('user/daftarvalidasi/') . $sud['id']; ?>" data-toggle="modal" data-target="#areyousureDeleteValidationModal">
+                                                    <a class="dropdown-item" href="<?= $delete ?>" data-toggle="modal" data-target="#areyousureDeleteValidationModal-<?= $sud['id']; ?>">
                                                         <div class="dropdown-item-icon">
                                                             <i class="fas fa-trash"></i>
                                                         </div>Batal Validasi
@@ -115,13 +103,22 @@
                                             </div>
                                         </div>
                                     </td>
-
-
                                     </td>
-
-
-
                                 </tr>
+                                <div class="modal fade" id="areyousureDeleteValidationModal-<?= $sud['id']; ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="areyousureDeleteValidationModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="areyousureDeleteValidationModalLabel">Batal Ajukan Validasi SKP</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">Apakah yakin membatalkan validasi SKP?
+
+                                            </div>
+                                            <div class="modal-footer"><button class="btn btn-dark" type="button" data-dismiss="modal">Batal</button><a href="<?= $delete ?>" class="btn btn-danger">Lanjutkan</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php $i++; ?>
                             <?php endforeach; ?>
                         </tbody>
