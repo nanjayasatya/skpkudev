@@ -8,6 +8,8 @@
 <?php foreach ($skp_req as $skpreq) : ?>
 <?php endforeach; ?>
 
+
+
 <?php
 if (empty($sdB)) {
     $sdB = "0";
@@ -49,27 +51,32 @@ if (empty($sdA)) {
                         <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Keterangan</th>
-                                    <th>Tahun</th>
-                                    <th>Posisi</th>
-                                    <th>Bobot</th>
+                                    <th colspan="2" class="text-center">Keterangan</th>
+                                    <th class="text-center">Keikutsertaan</th>
+                                    <th class="text-center">Bobot</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($skpuserdataA as $sud) : ?>
-                                    <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <!-- <td><?= $sud['tipe']; ?></td> -->
+                                <tr>
+                                    <?php foreach ($skpuserdataA as $sud) : ?>
+                                        <td class="text-center">
+                                            <img src="<?= $sud['logo']; ?>" style="max-width: 2rem; transform: translateZ(0);" ?>
+                                        </td>
                                         <td><?= $sud['event']; ?></td>
-                                        <td><?= $sud['tahun']; ?></td>
-                                        <td><?= $sud['posisi']; ?></td>
-                                        <td><?= $sud['bobot']; ?></td>
+                                        <?php
+                                        if ($sud['posisi'] == "Telah Mengikuti") {
+                                            $badge = 'badge bg-green text-white rounded-pill';
+                                        } else if ($sud['posisi'] == "Belum Mengikuti") {
+                                            $badge = 'badge bg-red text-white rounded-pill';
+                                        }
+                                        ?>
+                                        <td class="text-center">
+                                            <div class="<?= $badge ?>"><?= $sud['posisi']; ?></div>
+                                        </td>
+                                        <td class="text-center"><?= $sud['bobot']; ?></td>
+                                </tr>
 
-                                    </tr>
-                                    <?php $i++; ?>
-                                <?php endforeach; ?>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                         <p class="text-center mt-3" style="color:red">*Jika ada kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
@@ -89,22 +96,22 @@ if (empty($sdA)) {
                         <table id="userskpb" class="table table-bordered table-hover dataTable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Keterangan</th>
-                                    <th>Tahun</th>
-                                    <th>Posisi</th>
-                                    <th>Bobot</th>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Keterangan</th>
+                                    <th class="text-center">Tahun</th>
+                                    <th class="text-center">Posisi</th>
+                                    <th class="text-center">Bobot</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
                                 <?php foreach ($skpuserdataB as $sud) : ?>
                                     <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <td><?= $sud['event']; ?></td>
-                                        <td><?= $sud['tahun']; ?></td>
-                                        <td><?= $sud['posisi']; ?></td>
-                                        <td><?= $sud['bobot']; ?></td>
+                                        <th scope="row" class="text-center"><?= $i ?></th>
+                                        <td class="text-center"><?= $sud['event']; ?></td>
+                                        <td class="text-center"><?= $sud['tahun']; ?></td>
+                                        <td class="text-center"><?= $sud['posisi']; ?></td>
+                                        <td class="text-center"><?= $sud['bobot']; ?></td>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>

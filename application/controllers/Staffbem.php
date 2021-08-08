@@ -221,13 +221,11 @@ class Staffbem extends CI_Controller
         $this->session->set_userdata('referred_from', base_url('staffbem/inputskpauser/') . $this->uri->segment(3));
         $data['title'] = 'Input Data SKP A';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
-
         $skpdata['skpuserdataA'] = $this->skp->GetListSKPDataAForInput();
         $skpdata['userdata'] = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->result_array();
+        $skpdata['skp_a_ref'] = $this->db->get('skp_a_ref')->result_array();
         $userdata = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
-
         $npm = $userdata['npm'];
-
 
 
 
@@ -258,6 +256,8 @@ class Staffbem extends CI_Controller
             $this->load->view('staffbem/inputskpauser', $skpdata);
             $this->load->view('templates/footer');
         } else {
+            $event_ref = $this->input->post('event');
+            $skp_a_ref = $this->db->get_where('skp_a_ref', ['event_ref' => $event_ref])->row_array();
 
             $data = [
                 'npm' => $npm,
@@ -265,7 +265,8 @@ class Staffbem extends CI_Controller
                 'event' => $this->input->post('event'),
                 'tahun' => $this->input->post('tahun'),
                 'posisi' => $this->input->post('posisi'),
-                'bobot' => $this->input->post('bobot')
+                'bobot' => $this->input->post('bobot'),
+                'skp_a_ref' => $skp_a_ref['id']
             ];
             $this->db->insert('total_user_skp_a', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -283,6 +284,7 @@ class Staffbem extends CI_Controller
         $udata = $this->db->get_where('user', ['npm' => $npm])->row_array();
         $skpdata['skpadata'] = $this->db->get_where('total_user_skp_a', ['id' => $this->uri->segment(3)])->result_array();
         $skpdata['userdata'] = $this->db->get_where('user', ['npm' => $npm])->result_array();
+        $skpdata['skp_a_ref'] = $this->db->get('skp_a_ref')->result_array();
         $userdata = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
 
         $npm = $userdata['npm'];
@@ -314,6 +316,8 @@ class Staffbem extends CI_Controller
             $this->load->view('staffbem/editskpadata', $skpdata);
             $this->load->view('templates/footer');
         } else {
+            $event_ref = $this->input->post('event');
+            $skp_a_ref = $this->db->get_where('skp_a_ref', ['event_ref' => $event_ref])->row_array();
             $event =  $this->input->post('event');
             $tahun = $this->input->post('tahun');
             $posisi = $this->input->post('posisi');
@@ -322,6 +326,7 @@ class Staffbem extends CI_Controller
             $this->db->set('tahun', $tahun);
             $this->db->set('posisi', $posisi);
             $this->db->set('bobot', $bobot);
+            $this->db->set('skp_a_ref', $skp_a_ref['id']);
             $this->db->where('id', $this->uri->segment(3));
             $this->db->update('total_user_skp_a');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

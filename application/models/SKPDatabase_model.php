@@ -66,10 +66,17 @@ class SKPDatabase_model extends CI_Model
     //Function SKP A (Mendapatkan seluruh data SKP A oleh Mahasiswa).
     public function GetListSKPDataA()
     {
-        $npm = $this->session->userdata('npm');
+        /*$npm = $this->session->userdata('npm');
         $query = "SELECT *
                    FROM `total_user_skp_a`
                    WHERE `npm` = $npm
+        ";
+        return $this->db->query($query)->result_array();*/
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT *
+                   FROM `total_user_skp_a` JOIN `skp_a_ref`
+                   ON total_user_skp_a.`skp_a_ref` = skp_a_ref.`id`
+                   WHERE total_user_skp_a.`npm` = $npm
         ";
         return $this->db->query($query)->result_array();
     }

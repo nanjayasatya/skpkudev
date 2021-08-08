@@ -500,6 +500,10 @@ mark,
   height: auto;
 }
 
+.img{
+  image-rendering: pixelated;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #eff3f9;

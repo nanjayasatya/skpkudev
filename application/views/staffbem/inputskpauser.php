@@ -95,7 +95,16 @@
                                     <!-- <td><?= $sud['tipe']; ?></td> -->
                                     <td><?= $sud['event']; ?></td>
                                     <td><?= $sud['tahun']; ?></td>
-                                    <td><?= $sud['posisi']; ?></td>
+                                    <?php
+                                    if ($sud['posisi'] == "Telah Mengikuti") {
+                                        $badge = 'badge bg-green text-white rounded-pill';
+                                    } else if ($sud['posisi'] == "Belum Mengikuti") {
+                                        $badge = 'badge bg-red text-white rounded-pill';
+                                    }
+                                    ?>
+                                    <td>
+                                        <div class="<?= $badge ?>"><?= $sud['posisi']; ?></div>
+                                    </td>
                                     <td><?= $sud['bobot']; ?></td>
                                     <td class="text-center">
                                         <!--<a href="<?= base_url('staffbem/editskabdata/') . $sud['id']; ?>" class="btn btn-warning">Ubah Data</a> -->
@@ -121,21 +130,33 @@
                         <?php echo form_open_multipart('staffbem/inputskpauser/' . $this->uri->segment(3)); ?>
                         <form action="<?= base_url('staffbem/inputskpauser/' . $this->uri->segment(3)); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                             <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
-                            <div class="form-group text-center mt-3">
+                            <!--<div class="form-group text-center mt-3">
                                 <label for="event" class="font-weight-700">Nama Kegiatan/Keterangan</label>
                                 <input type="text" class="form-control" id="event" name="event" placeholder="" value="<?= set_value('event'); ?>">
                                 <?= form_error('event', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>-->
+                            <div class="form-group text-center">
+                                <label for="event" class="font-weight-700">Keterangan</label>
+                                <select name="event" id="event" class="select form-control">
+
+                                    <option value="<?= set_value('event_ref'); ?>"><?= set_value('event_ref'); ?></option>
+
+                                    <?php foreach ($skp_a_ref as $sar) : ?>
+                                        <option value="<?= $sar['event_ref'] ?>"> <?= $sar['event_ref'] ?> </option>
+                                    <?php endforeach; ?>
+
+                                </select>
+                                <?= form_error('event', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group text-center">
-                                <label for="posisi" class="font-weight-700">Posisi</label>
-                                <input type="text" class="form-control" id="posisi" name="posisi" placeholder="" value="<?= set_value('posisi'); ?>">
+                                <label for="posisi" class="font-weight-700">Status</label>
+                                <select name="posisi" id="posisi" class="form-control">
+                                    <option value="<?= set_value('posisi'); ?>"><?= set_value('posisi'); ?></option>
+                                    <option value="Telah Mengikuti">Telah Mengikuti</option>
+                                    <option value="Belum Mengikuti">Belum Mengikuti</option>
+                                </select>
                                 <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
-                            <!--<div class="form-group text-center">
-                                <label for="tahun">Tahun</label>
-                                <input type="number" class="form-control" id="tahun" name="tahun" placeholder="" value="<?= set_value('tahun'); ?>">
-                                <?= form_error('tahun', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div> -->
                             <div class="form-group text-center mt-3">
                                 <label for="tahun" class="font-weight-700">Tahun Pelaksanaan</label>
                                 <div class="input-group date" id="tahun" name="tahun" data-target-input="nearest">
@@ -198,6 +219,12 @@
         $(function() {
             $('#tahun').datetimepicker({
                 format: 'YYYY'
+            });
+        });
+        $(function() {
+            var select = $('select.select');
+            select.change(function() {
+                select.not(this).val(this.value);
             });
         });
     </script>

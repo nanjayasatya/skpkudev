@@ -399,6 +399,10 @@ class User extends CI_Controller
 
         $data['skp_req'] = $this->skp->GetSKPRequirements();
 
+        $data['skp_a_ref'] =  $this->db->get_where('skp_a_ref')->result_array();
+        $test = $this->skp->GetListSKPDataA();
+
+
         $buttonprint = '<a class="btn btn-dark btn-block mb-5" href="user/skpexport" target="_blank">Print Total SKP</a>';
 
         /* $this->db->where('id !=', 1);
