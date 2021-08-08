@@ -48,7 +48,7 @@ if (empty($sdA)) {
                 </a>
                 <div class="collapsed" id="collapseCardSKPA">
                     <div class="card-body">
-                        <table id="userskp_a" class="table table-bordered table-hover dataTable" style=" width:100%">
+                        <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
                             <thead>
                                 <tr>
                                     <th colspan="2" class="text-center">Keterangan</th>

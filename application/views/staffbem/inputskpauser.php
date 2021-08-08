@@ -73,7 +73,7 @@
                 <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
 
 
-                    <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
+                    <table id="userskp_a" class="table table-bordered table-hover dataTable" style=" width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
