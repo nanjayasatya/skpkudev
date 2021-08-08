@@ -51,7 +51,7 @@ if (empty($sdA)) {
                         <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
                             <thead>
                                 <tr>
-                                    <th colspan="2" class="text-center">Keterangan</th>
+                                    <th class="text-center">Keterangan</th>
                                     <th class="text-center">Keikutsertaan</th>
                                     <th class="text-center">Bobot</th>
                                 </tr>
