@@ -48,35 +48,35 @@ if (empty($sdA)) {
                 </a>
                 <div class="collapsed" id="collapseCardSKPA">
                     <div class="card-body">
-                        <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
+                        <table id="userskpa" class="table table-bordered table-hover dataTable" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th class="text-center"></th>
                                     <th class="text-center">Keterangan</th>
                                     <th class="text-center">Keikutsertaan</th>
                                     <th class="text-center">Bobot</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <?php foreach ($skpuserdataA as $sud) : ?>
-                                        <td class="text-center">
-                                            <img src="<?= $sud['logo']; ?>" style="max-width: 2rem; transform: translateZ(0);" ?>
-                                        </td>
+                                <?php $i = 1; ?>
+                                <?php foreach ($skpuserdataA as $sud) : ?>
+                                    <?php
+                                    if ($sud['posisi'] == "Telah Mengikuti") {
+                                        $badge = 'badge bg-green text-white rounded-pill';
+                                    } else if ($sud['posisi'] == "Belum Mengikuti") {
+                                        $badge = 'badge bg-red text-white rounded-pill';
+                                    }
+                                    ?>
+                                    <tr>
+                                        <th scope="row" class="text-center"><img src="<?= $sud['logo']; ?>" style="max-width: 2rem; transform: translateZ(0);" ?></th>
                                         <td><?= $sud['event']; ?></td>
-                                        <?php
-                                        if ($sud['posisi'] == "Telah Mengikuti") {
-                                            $badge = 'badge bg-green text-white rounded-pill';
-                                        } else if ($sud['posisi'] == "Belum Mengikuti") {
-                                            $badge = 'badge bg-red text-white rounded-pill';
-                                        }
-                                        ?>
                                         <td class="text-center">
                                             <div class="<?= $badge ?>"><?= $sud['posisi']; ?></div>
                                         </td>
                                         <td class="text-center"><?= $sud['bobot']; ?></td>
-                                </tr>
-
-                            <?php endforeach; ?>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                         <p class="text-center mt-3" style="color:red">*Jika ada kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
