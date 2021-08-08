@@ -1,6 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function () {
-  $("#userskp_a").DataTable({
+  $("#userskpa").DataTable({
     "paging": false,
     "ordering": false,
     "searching": false,
