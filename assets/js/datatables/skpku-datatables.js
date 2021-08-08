@@ -16,6 +16,22 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+  $("#userskp_a").DataTable({
+    "paging": false,
+    "ordering": false,
+    "searching": false,
+    "info": false,
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian-Alternative.json"
+    },
+    rowReorder: {
+      selector: 'td:nth-child(2)'
+    },
+    responsive: true
+  });
+});
+
+$(document).ready(function () {
   $("#userskpb").DataTable({
     lengthMenu: [5, 10],
     "language": {
