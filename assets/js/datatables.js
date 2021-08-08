@@ -1,7 +1,10 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function () {
   $("#userskpa").DataTable({
-    lengthMenu: [5, 10],
+    "paging": false,
+    "ordering": false,
+    "info": false,
+    "searching": false,
     "language": {
       "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian-Alternative.json"
     },
