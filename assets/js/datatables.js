@@ -8,11 +8,7 @@ $(document).ready(function () {
     rowReorder: {
       selector: 'td:nth-child(2)'
     },
-    responsive: true,
-    "paging": false,
-    "ordering": false,
-    "info": false,
-    "searching": false
+    responsive: true
   });
 });
 
