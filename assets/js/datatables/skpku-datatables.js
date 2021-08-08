@@ -3,7 +3,6 @@ $(document).ready(function () {
   $("#userskpa").DataTable({
     "paging": false,
     "ordering": false,
-    "info": false,
     "searching": false,
     lengthMenu: [5, 10],
     "language": {
