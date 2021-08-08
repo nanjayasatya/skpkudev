@@ -25,7 +25,7 @@
 <!-- ROW REORDER -->
 <script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js" crossorigin="anonymous"></script>
-<script src="<?= base_url('assets/js/datatables/datatables.js'); ?>"></script>
+<script src="<?= base_url('assets/js/datatables/skpku-datatables.js'); ?>"></script>
 
 
 </html>

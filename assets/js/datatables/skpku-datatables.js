@@ -4,7 +4,7 @@ $(document).ready(function () {
     "paging": false,
     "ordering": false,
     "searching": false,
-    lengthMenu: [5, 10],
+    "info": false,
     "language": {
       "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian-Alternative.json"
     },
