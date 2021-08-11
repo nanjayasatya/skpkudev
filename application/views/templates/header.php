@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <!-- Logout setelah 15 menit inactive -->
+    <meta http-equiv="refresh" content="900;url=<?= base_url('auth/logout'); ?>" />
     <!--<title><?= 'SKP-KU - ' . $title; ?></title>-->
     <title><?= $title . ' - SKP-KU'; ?></title>
     <link href="<?= base_url('assets/css/mainstyles.css'); ?>" rel="stylesheet" />
