@@ -17,6 +17,7 @@ class Staffbem extends CI_Controller
         $this->load->model('SKPDatabase_model', 'skp');
         $this->load->model('Statistic_model', 'stats');
         $this->load->model('EventDatabase_model', 'eventd');
+        $this->load->model('SendEmail_model', 'sendmailcontent');
         is_logged_in();
     }
 
@@ -118,43 +119,6 @@ class Staffbem extends CI_Controller
         }
     }
     //START EMAIL SEND FUNCTION
-    private function _validasiditerimaSendEmail()
-    {
-        $datauser = $this->db->get_where('user', ['npm' => $this->input->post('npm')])->row_array();
-        $email = $datauser['email'];
-        $message = '<br><h1>Validasi SKP : ' . $this->input->post('event') . ' Diterima!</h1></br> 
-                    <br></br>
-                    <br><h2>Data Validasi</h2></br>
-                    <br><p class="mt-2">Keterangan : ' . $this->input->post('event') . '</p></br>
-                    <br><p class="mt-2">Posisi     : ' . $this->input->post('posisi') . '</p></br>
-                    <br><p class="mt-2">Tahun      : ' . $this->input->post('tahun') . '</p></br>
-                    <br><p class="mt-2">Bobot      : ' . $this->input->post('bobot') . '</p></br>
-                    <br><h2>Validasi SKP Diterima!</h2></br>
-                    <br><p>Silahkan buka laman SKP Database untuk melihat Data SKP yang sudah tervalidasi.</p></br>';
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Informasi Pengajuan Validasi SKP : ' . $this->input->post('event'));
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
-    }
-
     private function _validasiditolakSendMail()
     {
         $datauser = $this->db->get_where('user', ['npm' => $this->input->post('npm')])->row_array();
@@ -583,7 +547,6 @@ class Staffbem extends CI_Controller
         endforeach;
         $data['detailevent'] = $this->db->get_where('event_data', ['name' => $event_detail])->result_array();
 
-
         $this->form_validation->set_rules('name', 'Name', 'required|trim', [
             'required' => 'Nama harus diisi!',
         ]);
@@ -637,8 +600,7 @@ class Staffbem extends CI_Controller
             unlink(FCPATH . 'assets/user_directory/' . $gabungan);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             SKP Berhasil di Validasi!</div>');
-            //Idupin kalo perlu ya.
-            $this->_validasiditerimaSendEmail();
+            $this->sendmailcontent->ValidasiSKPDiterima();
             redirect('staffbem/validasiskp');
         }
     }
@@ -722,7 +684,8 @@ class Staffbem extends CI_Controller
             $this->db->update('validation_event_pending');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Data Kegiatan Berhasil di Validasi!</div>');
-            $this->_validasiditerimaSendEmail();
+            //SALAH
+            //$this->_validasiditerimaSendEmail();
             redirect('staffbem/validasievent');
         }
     }
@@ -739,8 +702,7 @@ class Staffbem extends CI_Controller
         $this->db->update('validation_skp_user_pending');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Validasi SKP Ditolak!</div>');
-        //Balikin fungsinya kalo yakin emailnya proper buat ngirim banyak sekaligus
-        $this->_validasiditolakSendMail();
+        $this->sendmailcontent->ValidasiSKPDitolak();
         redirect('staffbem/validasiskp');
     }
     public function rejectvalidasiproposal()
