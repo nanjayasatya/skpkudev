@@ -16,14 +16,25 @@
                     max-height: 300px;
                   }
                 </style>
-                <div class="text-center">
-                  <!--<h2 class="font-weight-light my-4"><strong>Sistem Terintegrasi BEM FK UWKS</strong></h2>-->
-                </div>
                 <div class="card-body">
                   <div class="text-center mt-4">
                     <h1>Lupa Password</h1>
-                    <p class="mt-4">Silahkan menghubungi bagian Departemen INTERNAL BEM FK UWKS untuk melakukan reset password.</p>
-                    <a href="<?= base_url('auth'); ?>" class="btn btn-primary mt-3">Kembali</a>
+
+                    <?= $this->session->flashdata('message'); ?>
+                    <p class="mt-4 mb-4">Silahkan masukan email yang terhubung dengan akun SKP-KU untuk reset password</p>
+                    <form class="user" method="post" action="<?= base_url('auth/forgotpassword'); ?>">
+                      <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                      <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukan Email.." value="<?= set_value('email'); ?>">
+                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-user btn-block" class="mt-2">
+                        Reset Password
+                      </button>
+                    </form>
+                    <div class="mt-4">
+                      <a href="<?= base_url(); ?>">Kembali ke login</a>
+                    </div>
                   </div>
                 </div>
 
