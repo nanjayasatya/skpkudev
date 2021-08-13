@@ -264,7 +264,6 @@ class Auth extends CI_Controller
         $this->email->initialize($config);
         $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
         $this->email->to($this->input->post('email'));
-        $this->_ForgotPasswordSendEmail($token, 'verify');
 
         $this->email->subject('Reset Password');
         $this->email->message('Tekan link ini untuk reset password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
@@ -297,9 +296,8 @@ class Auth extends CI_Controller
                     'token' => $token,
                     'date_created' => time()
                 ];
-
                 $this->db->insert('user_token', $user_token);
-                //$this->_ForgotPasswordSendEmail($token, 'forgot');
+                $this->_ForgotPasswordSendEmail($token, 'forgot');
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Periksa email untuk link reset password!</div>');
                 redirect('auth/index');
