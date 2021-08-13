@@ -61,9 +61,11 @@ class User extends CI_Controller
     public function InputSKPSendTelegramMSGSKP()
     {
         date_default_timezone_set('Asia/Bangkok');
+        $event = $this->input->post('event');
+        $event_correction = ucwords(strtolower($event));
         $MSG = "&#10071; Informasi Validasi SKP Baru
         \n&#128273 NPM: " . $this->input->post('npm') . "
-        \n&#128221; Keterangan: " . $this->input->post('event') . "
+        \n&#128221; Keterangan: " . $event_correction . "
         \n&#127941; Posisi: " . $this->input->post('posisi') . "
         \n&#128345; Tahun: " . $this->input->post('tahun') . "
         \n&#128308; Bobot: " . $this->input->post('bobot') . "
@@ -179,7 +181,7 @@ class User extends CI_Controller
             $pdf->Cell(10, 10, 'No', 1, 0, 'C');
             $pdf->Cell(190, 10, 'Keterangan', 1, 0, 'C');
             $pdf->Cell(15, 10, 'Tahun', 1, 0, 'C');
-            $pdf->Cell(40, 10, 'Posisi', 1, 0, 'C');
+            $pdf->Cell(40, 10, 'Keikutsertaan', 1, 0, 'C');
             $pdf->Cell(15, 10, 'Bobot', 1, 0, 'C');
             $pdf->Ln();
             foreach ($skpdataA as $ska) {
@@ -577,11 +579,13 @@ class User extends CI_Controller
                     if ($this->upload->do_upload('image')) {
                         $new_image = $this->upload->data('file_name');
                         $skp_proof = $new_image;
+                        $event = $this->input->post('event');
+                        $event_correction = ucwords(strtolower($event));
                         $data = [
                             'name' => $this->input->post('name'),
                             'npm' => $this->session->userdata('npm'),
                             'tipe' => 'B',
-                            'event' => $this->input->post('event'),
+                            'event' => $event_correction,
                             'tahun' => $this->input->post('tahun'),
                             'posisi' => $this->input->post('posisi'),
                             'bobot' => $this->input->post('bobot'),
@@ -645,6 +649,7 @@ class User extends CI_Controller
                         $posisi = $this->input->post('posisi');
                         $bobot = $this->input->post('bobot');
                         $event = $this->input->post('event');
+                        //$event_correction = ucwords(strtolower($event));
                         $tahun = $this->input->post('tahun');
                         $this->db->set('event', $event);
                         $this->db->set('tahun', $tahun);
