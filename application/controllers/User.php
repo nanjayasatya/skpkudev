@@ -16,46 +16,8 @@ class User extends CI_Controller
         $this->load->model('News_model', 'news');
         $this->load->model('SKPDatabase_model', 'skp');
         $this->load->model('TelegramBot_model', 'telbot');
+        $this->load->model('SendEmail_model', 'sendmailcontent');
         is_logged_in();
-    }
-
-    //Function untuk Kirim Email.
-    private function _inputSKPsendEmail()
-    {
-        $datauser = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
-        $email = 'internalbemfk@gmail.com';
-        $message = '<br><h1>Pengajuan Validasi SKP</h1></br> 
-                    <br><h2>Data Validasi</h2></br>
-                    <br><p class="mt-1">Nama Mahasiswa : ' . $this->input->post('name') . '</p></br>
-                    <br><p class="mt-1">NPM : ' . $this->input->post('npm') . '</p></br>
-                    <br><p class="mt-1">Keterangan : ' . $this->input->post('event_data') . '</p></br>
-                    <br><p class="mt-1">Posisi     : ' . $this->input->post('event_posisi') . '</p></br>
-                    <br><p class="mt-1">Tahun      : ' . $this->input->post('event_year') . '</p></br>
-                    <br><p class="mt-1">Bobot      : ' . $this->input->post('bobot') . '</p></br>
-                    <br><h2>Saat ini sedang Menunggu Validasi</h2></br>
-                    <br><p><a href="https://skpku.bemfkuwks.com/">Login</a> untuk melakukan validasi SKP.</p></br>';
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Informasi Pengajuan Validasi SKP : ' . $this->input->post('npm') . ' ' . '(' . $this->input->post('event_data') . ')');
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
     }
 
     public function InputSKPSendTelegramMSGSKP()
@@ -517,8 +479,6 @@ class User extends CI_Controller
                         $this->db->insert('validation_skp_user_pending', $data);
                         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                         Data berhasil diinput, akan divalidasi lebih lanjut oleh Staff BEM!</div>');
-                        //Fungsi Email dimatikan dulu, cari solusi lain biar gak berat
-                        //$this->_inputSKPsendEmail();
                         $this->InputSKPSendTelegramMSGSKP();
                         redirect('user/daftarvalidasi');
                     } else {

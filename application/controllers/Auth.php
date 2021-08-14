@@ -43,51 +43,6 @@ class Auth extends CI_Controller
         $this->telbot->SendTelegramMSGDEV($MSG);
     }
 
-    private function _userloginSendMail()
-    {
-        date_default_timezone_set('Asia/Bangkok');
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-        echo $details->city; // -> "Mountain View"
-        $email = 'skpkubemfkuwks@gmail.com';
-        $message = '<br><p><strong>User</strong> : ' . $this->input->post('npm') . '</br>
-                    <br><p><strong>Name</strong> : ' . $this->session->userdata('name') . '</br>
-                    <br><p><strong>Login Time</strong> : ' . date("F, \ j Y h:i:s A") . '</br>
-                    <br><p><strong>IP Address</strong> : ' . $_SERVER['REMOTE_ADDR'] . '</br>
-                    <br><p><strong>City</strong> : ' . $details->city . '</br>
-                    <br><p><strong>Region</strong> : ' . $details->region . '</br>
-                    <br><p><strong>Country</strong> : ' . $details->country . '</br>
-                    <br><p><strong>ISP</strong> : ' . $details->org . '</br>
-                    <br><p><strong>Timezone</strong> : ' . $details->timezone . '</br>
-                    <br><p><strong>User Agent</strong> : ' . $_SERVER['HTTP_USER_AGENT'] . '</br>
-        ';
-
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Informasi Login User ' . date("h:i:s A"));
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
-    }
-
-
     //Halaman Index Auth (Login)
     public function index()
     {
@@ -129,7 +84,6 @@ class Auth extends CI_Controller
                         'name' => $user['name'],
                     ];
                     $this->session->set_userdata($data);
-                    //$this->_userloginSendMail();
                     $this->_userloginSendTelegram();
                     if ($user['role_id'] == 1) {
                         redirect('admin');
@@ -249,33 +203,6 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
-    /*private function _ForgotPasswordSendEmail($token, $type)
-    {
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($this->input->post('email'));
-
-        $this->email->subject('Reset Password');
-        $this->email->message('Tekan link ini untuk reset password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
-
-        if ($this->email->send()) {
-            return true;
-        } else {
-            echo $this->email->print_debugger();
-            die;
-        }
-    } */
 
     //Halaman Lupa Password.
     public function forgotpassword()
@@ -298,8 +225,7 @@ class Auth extends CI_Controller
                     'date_created' => time()
                 ];
                 $this->db->insert('user_token', $user_token);
-                //$this->_ForgotPasswordSendEmail($token, 'forgot');
-                $this->sendmailcontent->RequestResetPassword($token, 'forgot');
+                $this->sendmailcontent->ForgotPassword($token, 'forgot');
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Periksa email untuk link reset password!</div>');
                 redirect('auth/index');

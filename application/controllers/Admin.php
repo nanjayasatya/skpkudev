@@ -17,6 +17,7 @@ class Admin extends CI_Controller
         $this->load->model('Menumanagement_model', 'menumodel');
         $this->load->model('Userdatabase_model', 'userdatabase');
         $this->load->model('Statistic_model', 'stats');
+        $this->load->model('SendEmail_model', 'sendmailcontent');
         is_logged_in();
     }
 
@@ -638,45 +639,6 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //Function Send Email (Password Reset).
-    private function _passwordresetSendMail()
-    {
-        $datauser = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
-        $email = $datauser['email'];
-        $name = $datauser['name'];
-        $npm = $datauser['npm'];
-        $message = '<br><h3>Password Berhasil di Reset oleh Admin</h3></>
-                    <br><p>Password baru anda : ' . $this->input->post('new_password1') . ' </p></br>
-                    <br><h4 style="color:red">JANGAN DIBERIKAN KEPADA SIAPAPUN!</h4></br>
-                    <br><p>Untuk menjaga keamanan, langsung ubah password di laman ubah password.</p></br>
-                    <br><a href="https://skpku.bemfkuwks.com/auth">Login SKP-KU!</a>
-        ';
-
-
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Password Reset ' . $npm);
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
-    }
-
     //Halaman BEM Status
     public function bemstatus()
     {
@@ -750,7 +712,7 @@ class Admin extends CI_Controller
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     Password berhasil direset!</div>');
-            $this->_passwordresetSendMail();
+            $this->sendmailcontent->ResetPassword();
             redirect('admin/passwordreset/' . $this->uri->segment(3));
         }
     }
@@ -888,7 +850,7 @@ class Admin extends CI_Controller
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>');
-            $this->_passwordresetSendMail();
+            $this->sendmailcontent->ResetPassword();
             redirect('admin/userpasswordreset/' . $userid);
         }
     }
