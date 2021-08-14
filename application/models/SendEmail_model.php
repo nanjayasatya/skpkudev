@@ -1136,7 +1136,7 @@ class SendEmail_model extends CI_Model
                                           style="padding-right: 0px;padding-left: 0px;line-height: inherit;color: #000000;vertical-align: top;border-collapse: collapse;"
                                           align="center">
         
-                                          <img align="center" border="0" src="https://skpku.bemfkuwks.com/assets/img/email/logo.png" alt="Image" title="Image"
+                                          <img align="center" border="0" src="https://skpku.bemfkuwks.com/assets/img/email/logo_header.png" alt="Image" title="Image"
                                             style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 45%;max-width: 351px;line-height: inherit;"
                                             width="351" class="v-src-width v-src-max-width">
         
@@ -1749,7 +1749,7 @@ class SendEmail_model extends CI_Model
           <tr style="line-height: inherit;vertical-align: top;border-collapse: collapse;">
             <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;line-height: inherit;color: #000000;vertical-align: top;border-collapse: collapse;" align="center">
               
-              <img align="center" border="0" src="https://skpku.bemfkuwks.com/assets/img/email/logo.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 45%;max-width: 351px;line-height: inherit;" width="351" class="v-src-width v-src-max-width">
+              <img align="center" border="0" src="https://skpku.bemfkuwks.com/assets/img/email/logo_header.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 45%;max-width: 351px;line-height: inherit;" width="351" class="v-src-width v-src-max-width">
               
             </td>
           </tr>
