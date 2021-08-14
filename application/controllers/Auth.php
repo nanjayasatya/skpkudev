@@ -15,6 +15,7 @@ class Auth extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('text');
         $this->load->model('TelegramBot_model', 'telbot');
+        $this->load->model('SendEmail_model', 'sendmailcontent');
     }
 
 
@@ -248,7 +249,7 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
-    private function _ForgotPasswordSendEmail($token, $type)
+    /*private function _ForgotPasswordSendEmail($token, $type)
     {
         $config = [
             'protocol' => 'ssmtp',
@@ -274,7 +275,7 @@ class Auth extends CI_Controller
             echo $this->email->print_debugger();
             die;
         }
-    }
+    } */
 
     //Halaman Lupa Password.
     public function forgotpassword()
@@ -297,7 +298,8 @@ class Auth extends CI_Controller
                     'date_created' => time()
                 ];
                 $this->db->insert('user_token', $user_token);
-                $this->_ForgotPasswordSendEmail($token, 'forgot');
+                //$this->_ForgotPasswordSendEmail($token, 'forgot');
+                $this->sendmailcontent->RequestResetPassword($token, 'forgot');
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Periksa email untuk link reset password!</div>');
                 redirect('auth/index');
