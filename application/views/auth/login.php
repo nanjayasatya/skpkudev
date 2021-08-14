@@ -36,18 +36,18 @@
                                             <label class="small mb-1" for="inputPassword">Password</label>
                                             <input class="form-control form-control-solid py-4" id="password" name="password" type="password" placeholder="Masukkan Password..." />
                                             <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
-                                            
+
                                         </div>
                                         <!-- Form Group (login box)-->
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa password?</a>
-                                            
+
                                             <button type="submit" class="btn btn-primary">Login</button>
-                                            
+
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mb-0">
-                                         <a class="small" target="_blank" href="<?= base_url('assets/PEDOMAN_SKP-KU_BEM%20FK%20UWKS.pdf'); ?>">Pedoman SKP-KU</a>
-                                         </div>
+                                            <a class="small" target="_blank" href="<?= base_url('assets/PEDOMAN_SKP-KU_BEM%20FK%20UWKS.pdf'); ?>">Pedoman SKP-KU</a>
+                                        </div>
                                     </form>
                                 </div>
 
