@@ -79,7 +79,7 @@ if (empty($sdA)) {
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <p class="text-center mt-3" style="color:red">*Jika ada kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
+                        <p class="text-center mt-3" style="color:red">*Jika terdapat kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
 
                     </div>
                 </div>
@@ -117,7 +117,7 @@ if (empty($sdA)) {
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <p class="text-center mt-3" style="color:red">*Jika ada kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
+                        <p class="text-center mt-3" style="color:red">*Jika terdapat kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS</p>
                     </div>
                 </div>
             </div>

@@ -182,9 +182,9 @@ class User extends CI_Controller
             $pdf->Cell(276, 5, '*Jika ada kesalahan data mohon segera menghubungi Departemen INTERNAL BEM FK UWKS*', 0, 0, 'C');
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Ln(10);
-            $pdf->Cell(276, 5, 'SKP A diinput oleh Departemen INTERNAL BEM FK UWKS.', 0, 0, 'C');
+            $pdf->Cell(276, 5, 'SKP A di input oleh Departemen INTERNAL BEM FK UWKS.', 0, 0, 'C');
             $pdf->Ln(5);
-            $pdf->Cell(276, 5, 'SKP B diinput oleh Mahasiswa dan di validasi oleh Departemen INTERNAL BEM FK UWKS.', 0, 0, 'C');
+            $pdf->Cell(276, 5, 'SKP B di input oleh Mahasiswa dan di validasi oleh Departemen INTERNAL BEM FK UWKS.', 0, 0, 'C');
             $pdf->Ln(20);
             //
             //PEMISAH 
@@ -478,12 +478,12 @@ class User extends CI_Controller
                         ];
                         $this->db->insert('validation_skp_user_pending', $data);
                         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                        Data berhasil diinput, akan divalidasi lebih lanjut oleh Staff BEM!</div>');
+                        Data berhasil di input, akan divalidasi lebih lanjut oleh Staff BEM!</div>');
                         $this->InputSKPSendTelegramMSGSKP();
                         redirect('user/daftarvalidasi');
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                        Data gagal diinput, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
+                        Data gagal di input, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
                         echo $this->upload->display_errors();
                     }
                 }
@@ -554,14 +554,14 @@ class User extends CI_Controller
                         ];
                         $this->db->insert('validation_skp_user_pending', $data);
                         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                        Data berhasil diinput, akan divalidasi lebih lanjut oleh Staff BEM!</div>');
+                        Data berhasil di input, akan divalidasi lebih lanjut oleh Staff BEM!</div>');
                         //Fungsi Email dimatikan dulu, cari solusi lain biar gak berat
                         //$this->_inputSKPsendEmail();
                         $this->InputSKPSendTelegramMSGSKP();
                         redirect('user/daftarvalidasi');
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                        Data gagal diinput, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
+                        Data gagal di input, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
                         echo $this->upload->display_errors();
                     }
                 }
@@ -662,7 +662,7 @@ class User extends CI_Controller
                                 redirect('user/daftarvalidasi');
                             } else {
                                 $this->session->set_flashdata('datavalidasigagal', '<div class="alert alert-danger" role="alert">
-                        Data gagal diinput, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
+                        Data gagal di input, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
                                 echo $this->upload->display_errors();
                             }
                         }

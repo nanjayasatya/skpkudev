@@ -57,7 +57,7 @@
                                         $link = base_url('user/editskpdetails/') . $sud['id'];
                                         $deletevalidation = base_url('user/deletevalidation/') . $sud['id'];
                                         $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                        <i class="fas fa-ellipsis-h"></i>
                                     </button>';
                                         $delete = base_url('user/deletevalidation/') . $sud['id'];
                                     } else {
