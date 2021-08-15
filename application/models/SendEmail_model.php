@@ -2716,7 +2716,7 @@ class SendEmail_model extends CI_Model
         </html>';
         $config = [
             'protocol'  => 'smtp',
-            'smtp_host' => 'https://skpku.bemfkuwks.com',
+            'smtp_host' => 'skpku.bemfkuwks.com',
             'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 587,
