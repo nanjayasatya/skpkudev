@@ -8,7 +8,7 @@ class SendEmail_model extends CI_Model
         $config = [
             'protocol' => 'ssmtp',
             'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
+            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
             'mailtype' => 'html',
@@ -921,7 +921,7 @@ class SendEmail_model extends CI_Model
         $email = $datauser['email'];
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
         $this->email->to($email);
         $this->email->subject('Pengajuan Validasi SKP : ' . $this->input->post('event') . ' Diterima!');
         $this->email->message($message);
@@ -943,7 +943,7 @@ class SendEmail_model extends CI_Model
         $config = [
             'protocol' => 'ssmtp',
             'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
+            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
             'mailtype' => 'html',
@@ -1614,7 +1614,7 @@ class SendEmail_model extends CI_Model
         $email = $datauser['email'];
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
         $this->email->to($email);
         $this->email->subject('Pengajuan Validasi SKP : ' . $this->session->userdata('event_penolakan') . ' Ditolak!');
         $this->email->message($message);
@@ -2252,7 +2252,7 @@ class SendEmail_model extends CI_Model
         $config = [
             'protocol'  => 'ssmtp',
             'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
+            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
             'mailtype'  => 'html',
@@ -2261,7 +2261,7 @@ class SendEmail_model extends CI_Model
         ];
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
         $this->email->to($this->input->post('email'));
         $this->email->subject('SKP-KU Reset Password');
         $this->email->message($message);
@@ -2717,7 +2717,7 @@ class SendEmail_model extends CI_Model
         $config = [
             'protocol'  => 'ssmtp',
             'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
+            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
             'mailtype'  => 'html',
@@ -2726,7 +2726,7 @@ class SendEmail_model extends CI_Model
         ];
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
         $this->email->to($email);
         $this->email->subject('SKP-KU Reset Password');
         $this->email->message($message);
