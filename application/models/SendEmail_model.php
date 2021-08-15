@@ -1138,7 +1138,7 @@ class SendEmail_model extends CI_Model
               <td class="v-container-padding-padding" style="overflow-wrap: break-word;word-break: break-word;padding: 40px 40px 15px;font-family: ' . 'Montserrat' . ',sans-serif;line-height: inherit;color: #000000;vertical-align: top;border-collapse: collapse;" align="left">
                 
           <div class="v-color v-text-align v-line-height" style="line-height: 140%;text-align: center;word-wrap: break-word;color: #000000 !important;">
-            <p style="font-size: 14px;line-height: 140%;text-align: center;margin: 0;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; color: #666666; font-size: 14px;">Halo, </span><strong style="line-height: inherit;"><span style="line-height: 19.6px; color: #666666; font-size: 14px;">Nyoman Satiya Nanjaya Sadha</span></strong></span></p>
+            <p style="font-size: 14px;line-height: 140%;text-align: center;margin: 0;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; color: #666666; font-size: 14px;">Halo, </span><strong style="line-height: inherit;"><span style="line-height: 19.6px; color: #666666; font-size: 14px;">' . $sd['name'] . '</span></strong></span></p>
         <p style="font-size: 14px;line-height: 140%;text-align: center;margin: 0;">&nbsp;</p>
         <p style="font-size: 14px;line-height: 140%;text-align: center;margin: 0;"><span style="color: #666666; font-size: 14px; line-height: 19.6px;">Berikut merupakan informasi mengenai validasi SKP B yang sudah diajukan.</span></p>
           </div>
