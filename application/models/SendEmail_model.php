@@ -7,7 +7,7 @@ class SendEmail_model extends CI_Model
     {
         $config = [
             'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
+            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
             'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
@@ -942,7 +942,7 @@ class SendEmail_model extends CI_Model
 
         $config = [
             'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
+            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
             'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
@@ -2251,7 +2251,7 @@ class SendEmail_model extends CI_Model
         </html>';
         $config = [
             'protocol'  => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
+            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
             'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
@@ -2716,7 +2716,7 @@ class SendEmail_model extends CI_Model
         </html>';
         $config = [
             'protocol'  => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
+            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
             'smtp_user' => 'sistem@skpku.bemfkuwks.com',
             'smtp_pass' => 'Bemhiuwksmaju!',
             'smtp_port' => 465,
