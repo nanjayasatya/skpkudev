@@ -3,19 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class SendEmail_model extends CI_Model
 {
-    public function ValidasiSKPDiterima()
-    {
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
-            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $message = '<!DOCTYPE HTML
+  public function ValidasiSKPDiterima()
+  {
+    $message = '<!DOCTYPE HTML
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
         xmlns:o="urn:schemas-microsoft-com:office:office" style="line-height: inherit;">
@@ -917,40 +907,30 @@ class SendEmail_model extends CI_Model
       </body>
       
       </html>';
-        $datauser = $this->db->get_where('user', ['npm' => $this->input->post('npm')])->row_array();
-        $email = $datauser['email'];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Pengajuan Validasi SKP : ' . $this->input->post('event') . ' Diterima!');
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
+    $datauser = $this->db->get_where('user', ['npm' => $this->input->post('npm')])->row_array();
+    $email = $datauser['email'];
+    $this->load->library('email');
+    $this->email->initialize();
+    $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+    $this->email->to($email);
+    $this->email->subject('Pengajuan Validasi SKP : ' . $this->input->post('event') . ' Diterima!');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+      echo "Berhasil";
+    } else {
+      echo $this->email->print_debugger();
     }
-    public function ValidasiSKPDitolak()
-    {
-        $skpdetail = $this->skp->GetSpecificUserSKPValidationData();
-        foreach ($skpdetail as $sd) :
-        endforeach;
-        $this->session->set_userdata('event_penolakan', $sd['event']);
-        $this->session->set_userdata('npm_penolakan', $sd['npm']);
+  }
+  public function ValidasiSKPDitolak()
+  {
+    $skpdetail = $this->skp->GetSpecificUserSKPValidationData();
+    foreach ($skpdetail as $sd) :
+    endforeach;
+    $this->session->set_userdata('event_penolakan', $sd['event']);
+    $this->session->set_userdata('npm_penolakan', $sd['npm']);
 
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
-            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $message = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    $message = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" style="line-height: inherit;">
         <head style="line-height: inherit;">
         <!--[if gte mso 9]>
@@ -1610,25 +1590,25 @@ class SendEmail_model extends CI_Model
         </body>
         
         </html>';
-        $datauser = $this->db->get_where('user', ['npm' => $this->session->userdata('npm_penolakan')])->row_array();
-        $email = $datauser['email'];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Pengajuan Validasi SKP : ' . $this->session->userdata('event_penolakan') . ' Ditolak!');
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
-        }
+    $datauser = $this->db->get_where('user', ['npm' => $this->session->userdata('npm_penolakan')])->row_array();
+    $email = $datauser['email'];
+    $this->load->library('email');
+    $this->email->initialize();
+    $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+    $this->email->to($email);
+    $this->email->subject('Pengajuan Validasi SKP : ' . $this->session->userdata('event_penolakan') . ' Ditolak!');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+      echo "Berhasil";
+    } else {
+      echo $this->email->print_debugger();
     }
-    public function ForgotPassword($token, $type)
-    {
-        $datauser = $this->db->get_where('user', ['email' => $this->input->post('email')])->row_array();
-        $message = '<!DOCTYPE HTML
+  }
+  public function ForgotPassword($token, $type)
+  {
+    $datauser = $this->db->get_where('user', ['email' => $this->input->post('email')])->row_array();
+    $message = '<!DOCTYPE HTML
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
         xmlns:o="urn:schemas-microsoft-com:office:office" style="line-height: inherit;">
@@ -2249,36 +2229,26 @@ class SendEmail_model extends CI_Model
         </body>
         
         </html>';
-        $config = [
-            'protocol'  => 'ssmtp',
-            'smtp_host' => 'ssl://mail.skpku.bemfkuwks.com',
-            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'newline'   => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($this->input->post('email'));
-        $this->email->subject('SKP-KU Reset Password');
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-        } else {
-            echo $this->email->print_debugger();
-            die;
-        }
+    $this->load->library('email');
+    $this->email->initialize();
+    $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+    $this->email->to($this->input->post('email'));
+    $this->email->subject('SKP-KU Reset Password');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+    } else {
+      echo $this->email->print_debugger();
+      die;
     }
+  }
 
-    public function ResetPassword()
-    {
-        $datauser = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
-        $email = $datauser['email'];
-        $name = $datauser['name'];
-        $message = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  public function ResetPassword()
+  {
+    $datauser = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
+    $email = $datauser['email'];
+    $name = $datauser['name'];
+    $message = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" style="line-height: inherit;">
         <head style="line-height: inherit;">
         <!--[if gte mso 9]>
@@ -2714,27 +2684,17 @@ class SendEmail_model extends CI_Model
         </body>
         
         </html>';
-        $config = [
-            'protocol'  => 'smtp',
-            'smtp_host' => 'skpku.bemfkuwks.com',
-            'smtp_user' => 'sistem@skpku.bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 587,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'newline'   => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('SKP-KU Reset Password');
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-        } else {
-            echo $this->email->print_debugger();
-            die;
-        }
+    $this->load->library('email');
+    $this->email->initialize();
+    $this->email->from('sistem@skpku.bemfkuwks.com', 'SKP-KU BEM FK UWKS');
+    $this->email->to($email);
+    $this->email->subject('SKP-KU Reset Password');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+    } else {
+      echo $this->email->print_debugger();
+      die;
     }
+  }
 }
