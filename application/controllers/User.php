@@ -539,13 +539,11 @@ class User extends CI_Controller
                     if ($this->upload->do_upload('image')) {
                         $new_image = $this->upload->data('file_name');
                         $skp_proof = $new_image;
-                        $event = $this->input->post('event');
-                        $event_correction = ucwords(strtolower($event));
                         $data = [
                             'name' => $this->input->post('name'),
                             'npm' => $this->session->userdata('npm'),
                             'tipe' => 'B',
-                            'event' => $event_correction,
+                            'event' => $this->input->post('event'),
                             'tahun' => $this->input->post('tahun'),
                             'posisi' => $this->input->post('posisi'),
                             'bobot' => $this->input->post('bobot'),
