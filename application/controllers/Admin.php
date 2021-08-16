@@ -13,6 +13,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('text');
+        $this->load->helper('url');
         $this->load->model('News_model', 'news');
         $this->load->model('Menumanagement_model', 'menumodel');
         $this->load->model('Userdatabase_model', 'userdatabase');
@@ -207,21 +208,74 @@ class Admin extends CI_Controller
         }
     }
 
+    public function csrfName()
+    {
+        $csrfName = $this->security->get_csrf_token_name();
+        echo $csrfName;
+    }
+
+    public function csrfHash()
+    {
+        $csrfHash = $this->security->get_csrf_hash();
+        echo $csrfHash;
+    }
+
+    public function user_ajax_list()
+    {
+        $list = $this->userdatabase->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $user) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $user->name;
+            $row[] = '<div class="text-center">' . $user->npm . '</div>';
+            $row[] = '<div class="text-center">' . $user->angkatan . $user->kelas . '</div>';
+            $row[] = $user->email;
+            $row[] = '<div class="text-center">
+            <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="' . base_url('admin/useredit/') . $user->id . '">
+                    <div class="dropdown-item-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>Data Lengkap
+                </a>
+                <a class="dropdown-item" href="' . base_url('admin/resetpassword/') . $user->id . '">
+                    <div class="dropdown-item-icon">
+                        <i class="fas fa-key"></i>
+                    </div>Reset Password
+                </a>
+            </div>
+        </div>';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->userdatabase->count_all(),
+            "recordsFiltered" => $this->userdatabase->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
     //Halaman User Database (Mahasiswa Only).
     public function userDatabase()
     {
         $data['title'] = 'User Database Management';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
-        $this->db->where('role_id !=', 1);
+        /*$this->db->where('role_id !=', 1);
         $this->db->where('role_id !=', 3);
         $this->db->where('role_id !=', 4);
         $this->db->where('role_id !=', 5);
         $this->db->order_by('npm'); //Ngurutin dari NPM yang paling kecil 
-        $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array();
-
-        /* $this->db->where('id !=', 1);
-        $this->db->where('id !=', 3); */
+        $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array(); */
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/admin/admin_sidebar', $data);

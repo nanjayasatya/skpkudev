@@ -18,6 +18,7 @@ class Staffbem extends CI_Controller
         $this->load->model('Statistic_model', 'stats');
         $this->load->model('EventDatabase_model', 'eventd');
         $this->load->model('SendEmail_model', 'sendmailcontent');
+        $this->load->model('Userdatabase_model', 'userdatabase');
         is_logged_in();
     }
 
@@ -118,65 +119,77 @@ class Staffbem extends CI_Controller
             redirect('staffbem/validasiproposal');
         }
     }
-    //START EMAIL SEND FUNCTION
-    private function _validasiditolakSendMail()
+
+    public function user_ajax_list()
     {
-        $datauser = $this->db->get_where('user', ['npm' => $this->input->post('npm')])->row_array();
-        $email = $datauser['email'];
-        $message = '<br><h1>Validasi SKP : ' . $this->input->post('event') . ' Ditolak!</h1></br> 
-                    <br></br>
-                    <br><h2>Data Validasi</h2></br>
-                    <br><p class="mt-2">Keterangan : ' . $this->input->post('event') . '</p></br>
-                    <br><p class="mt-2">Posisi     : ' . $this->input->post('posisi') . '</p></br>
-                    <br><p class="mt-2">Tahun      : ' . $this->input->post('tahun') . '</p></br>
-                    <br><p class="mt-2">Bobot      : ' . $this->input->post('bobot') . '</p></br>
-                    <br><h2>Validasi SKP Ditolak!</h2></br>
-                    <br><p class="mt-2">Alasan Penolakan      : ' . $this->input->post('rejection_reason') . '</p></br>
-                    <br><p>Untuk mengubah data, silahkan melalui "Edit Details" pada laman Validasi dan Input SKP kemudian validasi ulang.</p></br>';
-        $config = [
-            'protocol' => 'ssmtp',
-            'smtp_host' => 'ssl://mail.bemfkuwks.com',
-            'smtp_user' => 'skpku@bemfkuwks.com',
-            'smtp_pass' => 'Bemhiuwksmaju!',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        $this->email->from('skpku@bemfkuwks.com', 'Sistem BEM FK UWKS');
-        $this->email->to($email);
-        $this->email->subject('Informasi Pengajuan Validasi SKP : ' . $this->input->post('event'));
-        $this->email->message($message);
-        if ($this->email->send()) {
-            return true;
-            echo "Berhasil";
-        } else {
-            echo $this->email->print_debugger();
+        $list = $this->userdatabase->get_datatables();
+
+
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $user) {
+            $skpa = $user->npm;
+            $skpb = $user->npm;
+            $skpreq = $user->angkatan;
+            $listskpa = $this->userdatabase->SumTotalSKPUserA($skpa);
+            $listskpb = $this->userdatabase->SumTotalSKPUserB($skpb);
+            $listskpreq = $this->userdatabase->GetSKPRequirements($skpreq);
+            $totalskp = $listskpa + $listskpb;
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $user->name;
+            $row[] = '<div class="text-center">' . $user->npm . '</div>';
+            $row[] = '<div class="text-center">' . $user->angkatan . $user->kelas . '</div>';
+            if ($totalskp >= $listskpreq) {
+                $badge = 'bg-green';
+            } else {
+                $badge = 'bg-red';
+            }
+            $row[] = '<div class="text-center"><div class="badge ' . $badge . ' text-white text-lg rounded-pill">' . $totalskp . ' / ' . $listskpreq . '</div></div>';
+            $row[] = '<div class="text-center">
+            <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-info"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="' . base_url('staffbem/inputskpauser/') . $user->id . '">
+                    <div class="dropdown-item-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>Data SKP A
+                </a>
+                <a class="dropdown-item" href="' . base_url('staffbem/inputskpbuser/') . $user->id . '">
+                    <div class="dropdown-item-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>Data SKP B
+                </a>
+            </div>
+        </div>';
+
+            $data[] = $row;
         }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->userdatabase->count_all(),
+            "recordsFiltered" => $this->userdatabase->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
     }
 
-    //Halaman Database SKP A (Mahasiswa).
-    public function skpadatabase()
+    public function skpdatabase()
     {
-        $data['title'] = 'Database SKP A';
+        $data['title'] = 'SKP Database';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
-        $this->db->where('role_id !=', 1);
-        $this->db->where('role_id !=', 3);
-        $this->db->where('role_id !=', 4);
-        $this->db->where('role_id !=', 5);
         $this->db->order_by('npm'); //Ngurutin dari NPM yang paling kecil 
         $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array();
-
-        /* $this->db->where('id !=', 1);
-        $this->db->where('id !=', 3); */
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/staffbem/staffbem_sidebar', $data);
         $this->load->view('templates/staffbem/staffbem_topbar', $data);
-        $this->load->view('staffbem/skpadatabase', $data);
+        $this->load->view('staffbem/skpdatabase', $data);
         $this->load->view('templates/footer');
     }
 
@@ -297,28 +310,6 @@ class Staffbem extends CI_Controller
                         Data SKP A Mahasiswa berhasil diubah!</div>');
             redirect('staffbem/inputskpauser/' . $udata['id']);
         }
-    }
-
-    public function skpbdatabase()
-    {
-        $data['title'] = 'Database SKP B';
-        $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
-
-        $this->db->where('role_id !=', 1);
-        $this->db->where('role_id !=', 3);
-        $this->db->where('role_id !=', 4);
-        $this->db->where('role_id !=', 5);
-        $this->db->order_by('npm'); //Ngurutin dari NPM yang paling kecil 
-        $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array();
-
-        /* $this->db->where('id !=', 1);
-        $this->db->where('id !=', 3); */
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/staffbem/staffbem_sidebar', $data);
-        $this->load->view('templates/staffbem/staffbem_topbar', $data);
-        $this->load->view('staffbem/skpbdatabase', $data);
-        $this->load->view('templates/footer');
     }
 
     public function checkskpauthconfirm()

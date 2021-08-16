@@ -8,27 +8,14 @@
                         <div class="nav-link-icon"><i class="fas fa-home"></i></div>
                         Homepage
                     </a>
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseSKP" aria-expanded="false" aria-controls="collapseSKP">
-                        <div class="nav-link-icon"><i class="fas fa-wrench"></i></div>
-                        Pendataan SKP
-                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    <a class="nav-link" href="<?= base_url('staffbem/validasiskp'); ?>">
+                        <div class="nav-link-icon"><i class="fas fa-check"></i></div>
+                        Validasi SKP B
                     </a>
-                    <div class="collapse" id="collapseSKP" data-parent="#accordionSidenav">
-                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                            <a class="nav-link" href="<?= base_url('staffbem/validasiskp'); ?>">
-                                <div class="nav-link-icon"><i class="fas fa-check"></i></div>
-                                Validasi SKP B
-                            </a>
-                            <a class="nav-link" href="<?= base_url('staffbem/skpadatabase'); ?>">
-                                <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                                Database SKP A
-                            </a>
-                            <a class="nav-link" href="<?= base_url('staffbem/skpbdatabase'); ?>">
-                                <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                                Database SKP B
-                            </a>
-                        </nav>
-                    </div>
+                    <a class="nav-link" href="<?= base_url('staffbem/skpdatabase'); ?>">
+                        <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                        SKP Database
+                    </a>
                     <!--<div class="nav accordion" id="KegiatanCollapse">
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseKegiatan" aria-expanded="false" aria-controls="collapseKegiatan">
                             <div class="nav-link-icon"><i class="fas fa-wrench"></i></div>
@@ -56,8 +43,6 @@
                         <div class="nav-link-icon"><i class="fas fa-newspaper"></i></div>
                         Berita
                     </a> -->
-
-
                 </div>
             </div>
             <div class="sidenav-footer">

@@ -183,7 +183,7 @@
                         </button>
                         <br>
                         <div class="mt-2">
-                            <a href="<?= base_url('staffbem/skpadatabase'); ?>" class="btn btn-lg btn-dark btn-icon-split">
+                            <a href="<?= base_url('staffbem/skpdatabase'); ?>" class="btn btn-lg btn-dark btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-arrow-left"></i>
                                 </span>
