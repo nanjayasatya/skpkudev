@@ -243,7 +243,7 @@ class Admin extends CI_Controller
                         <i class="fas fa-edit"></i>
                     </div>Data Lengkap
                 </a>
-                <a class="dropdown-item" href="' . base_url('admin/passwordreset/') . $user->id . '">
+                <a class="dropdown-item" href="' . base_url('admin/userpasswordreset/') . $user->id . '">
                     <div class="dropdown-item-icon">
                         <i class="fas fa-key"></i>
                     </div>Reset Password
