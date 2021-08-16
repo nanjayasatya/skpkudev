@@ -29,16 +29,13 @@
                     <table id="userskpvalidation" class="table table-bordered table-hover dataTable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <!-- <th>Tipe SKP</th>-->
-                                <th>Keterangan</th>
-                                <th>Tahun</th>
-                                <th>Posisi</th>
-                                <th>Bobot</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                                <!-- <th>Active</th> -->
-                                <!--<th>Action</th> -->
+                                <th class="text-center">No</th>
+                                <th class="text-center">Keterangan</th>
+                                <th class="text-center">Tahun</th>
+                                <th class="text-center">Posisi</th>
+                                <th class="text-center">Bobot</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
 
                             </tr>
                         </thead>
@@ -47,7 +44,6 @@
                             <?php foreach ($skpuserpendingvalidation as $sud) : ?>
                                 <tr>
                                     <th scope="row"><?= $i ?></th>
-                                    <!-- <td><?= $sud['tipe']; ?></td> -->
                                     <td><?= $sud['event']; ?></td>
                                     <td><?= $sud['tahun']; ?></td>
                                     <td><?= $sud['posisi']; ?></td>
@@ -71,7 +67,7 @@
                                                 $vali = '<div class="badge bg-red text-white rounded-pill">Validasi Ditolak</div>';
                                                 $link = base_url('user/editskpdetails/') . $sud['id'];
                                                 $button = '<button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
+                                                <i class="fas fa-ellipsis-h"></i>
                                             </button>';
                                                 $delete = base_url('user/deletevalidation/') . $sud['id'];
                                             }

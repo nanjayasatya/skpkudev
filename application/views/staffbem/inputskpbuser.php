@@ -76,14 +76,14 @@
                     <table id="userskpa" class="table table-bordered table-hover dataTable" style=" width:100%">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th class="text-center">No</th>
 
-                                <th>Keterangan</th>
-                                <th>Tahun</th>
-                                <th>Posisi</th>
-                                <th>Bobot</th>
+                                <th class="text-center">Keterangan</th>
+                                <th class="text-center">Tahun</th>
+                                <th class="text-center">Posisi</th>
+                                <th class="text-center">Bobot</th>
 
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
 
                             </tr>
                         </thead>
@@ -91,12 +91,12 @@
                             <?php $i = 1; ?>
                             <?php foreach ($skpuserdataB as $sud) : ?>
                                 <tr>
-                                    <th scope="row"><?= $i ?></th>
+                                    <th class="text-center" scope="row"><?= $i ?></th>
                                     <!-- <td><?= $sud['tipe']; ?></td> -->
-                                    <td><?= $sud['event']; ?></td>
-                                    <td><?= $sud['tahun']; ?></td>
-                                    <td><?= $sud['posisi']; ?></td>
-                                    <td><?= $sud['bobot']; ?></td>
+                                    <td class="text-center"><?= $sud['event']; ?></td>
+                                    <td class="text-center"><?= $sud['tahun']; ?></td>
+                                    <td class="text-center"><?= $sud['posisi']; ?></td>
+                                    <td class="text-center"><?= $sud['bobot']; ?></td>
                                     <td class="text-center">
                                         <!--<a href="<?= base_url('staffbem/editskpbdata/') . $sud['id']; ?>" class="btn btn-warning">Ubah Data</a> -->
                                         <!-- <a href="" class="btn btn-danger">Delete</a> -->

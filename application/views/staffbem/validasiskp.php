@@ -25,15 +25,15 @@
                     <table id="listvalidasi" class="table table-bordered table-hover dataTable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>NPM</th>
-                                <th>Keterangan</th>
-                                <th>Tahun</th>
-                                <th>Posisi</th>
-                                <th>Bobot</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">NPM</th>
+                                <th class="text-center">Keterangan</th>
+                                <th class="text-center">Tahun</th>
+                                <th class="text-center">Posisi</th>
+                                <th class="text-center">Bobot</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
 
                             </tr>
                         </thead>
