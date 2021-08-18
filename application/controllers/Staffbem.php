@@ -120,10 +120,49 @@ class Staffbem extends CI_Controller
         }
     }
 
+    public function skpb_ajax_list()
+    {
+        $list = $this->skp->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $skpbpending) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $skpbpending->name;
+            $row[] = $skpbpending->npm;
+            $row[] = $skpbpending->event;
+            $row[] = $skpbpending->tahun;
+            $row[] = $skpbpending->posisi;
+            $row[] = $skpbpending->bobot;
+            $row[] = '<div class="badge bg-warning text-white rounded-pill">Menunggu Validasi</div>';
+            $row[] = '<div class="text-center">
+            <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="' . base_url('staffbem/detailvalidasi/') . $skpbpending->id . '">
+                    <div class="dropdown-item-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>Data Lengkap
+                </a>
+            </div>
+        </div>';
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->skp->count_all(),
+            "recordsFiltered" => $this->skp->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
     public function user_ajax_list()
     {
         $list = $this->userdatabase->get_datatables();
-
 
         $data = array();
         $no = $_POST['start'];

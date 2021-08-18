@@ -22,7 +22,7 @@
             <div class="card mb-3">
                 <div class="card-header h3"><strong>Daftar Validasi SKP B</strong></div>
                 <div class="card-body mb-3">
-                    <table id="listvalidasi" class="table table-bordered table-hover dataTable" style="width:100%">
+                    <table id="listvalidasiskp" class="table table-bordered table-hover dataTable" style="width:100%">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
@@ -34,43 +34,9 @@
                                 <th class="text-center">Bobot</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($listvalidasi as $lv) : ?>
-                                <tr>
-                                    <th scope="row"><?= $i ?></th>
-                                    <td><?= $lv['name']; ?></td>
-                                    <td><?= $lv['npm']; ?></td>
-                                    <td><?= $lv['event']; ?></td>
-                                    <td><?= $lv['tahun']; ?></td>
-                                    <td><?= $lv['posisi']; ?></td>
-                                    <td><?= $lv['bobot']; ?></td>
-                                    <?php if ($lv['status'] == 0) {
-                                        $vali = '<div class="badge bg-warning text-white rounded-pill">Menunggu Validasi</div>';
-                                    }
-
-                                    ?>
-                                    <td><?= $vali ?></td>
-                                    <td>
-                                        <div class="text-center">
-                                            <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="<?= base_url('staffbem/detailvalidasi/') . $lv['id']; ?>">
-                                                    <div class="dropdown-item-icon">
-                                                        <i class="fas fa-edit"></i>
-                                                    </div>Data Lengkap
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <?php $i++; ?>
-                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <p class="text-lg text-center mt-3" style="color:red">*Pastikan data yang diinput sudah benar!</p>
