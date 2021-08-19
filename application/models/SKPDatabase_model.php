@@ -13,7 +13,7 @@ class SKPDatabase_model extends CI_Model
     var $table = 'validation_skp_user_pending';
     var $column_order = array(null, 'id', 'npm', 'name', 'tipe', 'event', 'tahun', 'posisi', 'bobot', 'skp_proof', 'rejection_reason', 'status');
     var $column_search = array('id', 'npm', 'name', 'tipe', 'event', 'tahun', 'posisi', 'bobot', 'skp_proof', 'rejection_reason', 'status');
-    var $order = array('id' => 'desc');
+    var $order = array('id' => 'asc');
     var $status = array('status' => '0');
 
     public function __construct()
