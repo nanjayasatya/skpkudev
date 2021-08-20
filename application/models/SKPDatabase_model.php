@@ -107,9 +107,8 @@ class SKPDatabase_model extends CI_Model
     {
         $npm = $this->session->userdata('npm');
         $query = "SELECT COUNT(id)
-                   FROM `validation_skp_user_pending`
+                   FROM `total_user_skp_b`
                    WHERE `npm` = $npm
-                   AND `status` = 1
         ";
         return $this->db->query($query)->result_array();
     }
