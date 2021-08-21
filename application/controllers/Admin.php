@@ -267,15 +267,19 @@ class Admin extends CI_Controller
     //Halaman User Database (Mahasiswa Only).
     public function userDatabase()
     {
+        $this->load->helper('url');
+		$this->load->helper('form');
         $data['title'] = 'User Database Management';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
-        /*$this->db->where('role_id !=', 1);
-        $this->db->where('role_id !=', 3);
-        $this->db->where('role_id !=', 4);
-        $this->db->where('role_id !=', 5);
-        $this->db->order_by('npm'); //Ngurutin dari NPM yang paling kecil 
-        $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array(); */
+        $angkatan_list = $this->userdatabase->get_list_angkatan();
+
+		$opt = array('' => '');
+		foreach ($angkatan_list as $angkatan) {
+			$opt[$angkatan] = $angkatan;
+		}
+
+        $data['angkatan'] = form_dropdown('',$opt,'','id="angkatan" class="form-control"');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/admin/admin_sidebar', $data);
@@ -331,10 +335,11 @@ class Admin extends CI_Controller
         $fulldata['userfulldata'] = $this->userdatabase->getUserFullData();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim', [
-            'required' => 'Nama harus di isi dengan rapi! Contoh : Muhammad Rizky Baihaqy',
+            'required' => 'Nama harus di isi dengan rapi! Contoh : Nyoman Satiya Nanjaya Sadha',
         ]);
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', [
-            'required' => 'Email harus di isi dengan email aktif! Contoh : rizkybaihaqy@gmail.com',
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[user.npm]|valid_email', [
+            'required' => 'Email harus di isi dengan email aktif! Contoh : nanjayaevan@gmail.com',
+
         ]);
         $this->form_validation->set_rules('npm', 'NPM', 'required|trim', [
             'required' => 'NPM harus di isi!',
@@ -384,11 +389,11 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim|is_unique[user.name]', [
-            'required' => 'Nama harus di isi dengan rapi! Contoh : Muhammad Rizky Baihaqy',
+            'required' => 'Nama harus di isi dengan rapi! Contoh : Nyoman Satiya Nanjaya Sadha',
             'is_unique' => 'Nama sudah terdaftar!'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'required' => 'Email harus di isi dengan email aktif! Contoh : rizkybaihaqy@gmail.com',
+            'required' => 'Email harus di isi dengan email aktif! Contoh : nanjayaevan@gmail.com',
             'is_unique' => 'Email sudah terdaftar!'
         ]);
         $this->form_validation->set_rules('npm', 'NPM', 'required|trim|is_unique[user.npm]', [

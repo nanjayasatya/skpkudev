@@ -58,14 +58,21 @@
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
+            "searching": false,
+            "lengthChange": false,
 
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "user_ajax_list",
                 "type": "POST",
-                "data": {
-                    "csrf_bemfkuwks": csrfHash
-                },
+                "data": function(data) {
+                    data.csrf_bemfkuwks = csrfHash;
+                    data.angkatan = $('#angkatan').val();
+                    data.kelas = $('#kelas').val();
+                    data.npm = $('#npm').val();
+                    data.name = $('#name').val();
+                }
+
             },
 
             //Set column definition initialisation properties.
@@ -82,7 +89,16 @@
             }
 
         });
+        $('#btn-filter').click(function() { //button filter event click
+            $('#userdatabase').DataTable().ajax.reload()
+            //just reload table
+        });
+        $('#btn-reset').click(function() { //button reset event click
+            $('#form-filter')[0].reset();
+            $('#userdatabase').DataTable().ajax.reload()
 
+            //just reload table
+        });
     });
 
     $(document).ready(function() {
@@ -93,14 +109,20 @@
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
+            "searching": false,
+            "lengthChange": false,
 
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "user_ajax_list",
                 "type": "POST",
-                "data": {
-                    "csrf_bemfkuwks": csrfHash
-                },
+                "data": function(data) {
+                    data.csrf_bemfkuwks = csrfHash;
+                    data.angkatan = $('#angkatan').val();
+                    data.kelas = $('#kelas').val();
+                    data.npm = $('#npm').val();
+                    data.name = $('#name').val();
+                }
             },
 
             //Set column definition initialisation properties.
@@ -116,6 +138,16 @@
                 "selector": "td:nth-child(2)",
             }
 
+        });
+        $('#btn-filter').click(function() { //button filter event click
+            $('#skpdatabasebem').DataTable().ajax.reload()
+            //just reload table
+        });
+        $('#btn-reset').click(function() { //button reset event click
+            $('#form-filter')[0].reset();
+            $('#skpdatabasebem').DataTable().ajax.reload()
+
+            //just reload table
         });
 
     });

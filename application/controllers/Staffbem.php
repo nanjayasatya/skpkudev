@@ -38,6 +38,13 @@ class Staffbem extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function test()
+    {
+        $test = $this->userdatabase->getAngkatan();
+        var_dump($test);
+        die;
+    }
+
     public function validasiskp()
     {
         $data['title'] = 'Validasi SKP B';
@@ -222,8 +229,15 @@ class Staffbem extends CI_Controller
         $data['title'] = 'SKP Database';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
-        $this->db->order_by('npm'); //Ngurutin dari NPM yang paling kecil 
+
         $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array();
+        $angkatan_list = $this->userdatabase->get_list_angkatan();
+
+        $opt = array('' => '');
+        foreach ($angkatan_list as $angkatan) {
+            $opt[$angkatan] = $angkatan;
+        }
+        $data['angkatan'] = form_dropdown('', $opt, '', 'id="angkatan" class="form-control"');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/staffbem/staffbem_sidebar', $data);

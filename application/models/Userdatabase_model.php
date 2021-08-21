@@ -26,6 +26,24 @@ class Userdatabase_model extends CI_Model
 
     private function _get_datatables_query()
     {
+
+        if($this->input->post('angkatan'))
+		{
+			$this->db->where('angkatan', $this->input->post('angkatan'));
+		}
+        if($this->input->post('kelas'))
+		{
+			$this->db->where('kelas', $this->input->post('kelas'));
+		}
+        if($this->input->post('npm'))
+		{
+			$this->db->like('npm', $this->input->post('npm'));
+		}
+		if($this->input->post('name'))
+		{
+			$this->db->like('name', $this->input->post('name'));
+		}
+		
         $this->db->from($this->table);
         $this->db->where('role_id =', 2);
 
@@ -58,6 +76,23 @@ class Userdatabase_model extends CI_Model
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
+
+    public function get_list_angkatan()
+	{
+		$this->db->select('angkatan');
+        $this->db->where('role_id =', 2);
+		$this->db->from($this->table);
+		$this->db->order_by('angkatan','asc');
+		$query = $this->db->get();
+		$result = $query->result();
+
+		$angkatan = array();
+		foreach ($result as $row) 
+		{
+			$angkatan[] = $row->angkatan;
+		}
+		return $angkatan;
+	}
 
     function get_datatables()
     {
@@ -132,6 +167,16 @@ class Userdatabase_model extends CI_Model
         $this->db->from($this->table);
         $this->db->where('role_id =', 2);
         return $this->db->count_all_results();
+    }
+
+    public function getAngkatan()
+    {
+        $query = "SELECT `angkatan`
+                  FROM `user`
+                  WHERE `role_id` = '2'
+                  GROUP BY `angkatan`
+        ";
+        return $this->db->query($query)->result_array();
     }
 
     //Function Get User Database (Mendapatkan seluruh data Mahasiswa *Exclude Admin, BEM dan BSO*).
