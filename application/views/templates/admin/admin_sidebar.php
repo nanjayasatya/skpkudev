@@ -3,7 +3,7 @@
         <nav class="sidenav shadow-right sidenav-light">
             <div class="sidenav-menu">
                 <div class="nav accordion" id="accordionSidenav">
-                    <div class="sidenav-menu-heading">STAFF BEM</div>
+                    <div class="sidenav-menu-heading">ADMINISTRATOR</div>
                     <a class="nav-link" href="<?= base_url('admin'); ?>">
                         <div class="nav-link-icon"><i class="fas fa-home"></i></div>
                         Homepage

@@ -34,13 +34,13 @@
                             <form id="form-filter" class="form-horizontal">
                                 <div class="form-group row">
 
-                                    <div class="col-lg-6">
-                                        <label for="angkatan" class="col-lg-6 control-label">Angkatan</label>
+                                    <div class="col-lg-2">
+                                        <label for="angkatan" class="control-label">Angkatan</label>
                                         <?php echo $angkatan; ?>
                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <label for="kelas" class="col-lg-6 control-label">Kelas</label>
+                                    <div class="col-lg-2">
+                                        <label for="kelas" class="control-label">Kelas</label>
                                         <select class="form-control" name="kelas" id="kelas">
                                             <option value=""></option>
                                             <option value="A">A</option>
@@ -49,19 +49,16 @@
                                             <option value="D">D</option>
                                         </select>
                                     </div>
-
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label for="name" class="col-lg control-label">Nama Lengkap</label>
+                                    <div class="col-lg-3">
+                                        <label for="npm" class="control-label">NPM</label>
+                                        <input type="text" class="form-control" id="npm">
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <label for="name" class="control-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="name">
 
                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <label for="npm" class="col-lg-6 control-label">NPM</label>
-                                        <input type="text" class="form-control" id="npm">
-                                    </div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <div class="form-group d-flex align-items-center justify-content-between mb-0">

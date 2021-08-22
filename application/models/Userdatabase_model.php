@@ -27,23 +27,19 @@ class Userdatabase_model extends CI_Model
     private function _get_datatables_query()
     {
 
-        if($this->input->post('angkatan'))
-		{
-			$this->db->where('angkatan', $this->input->post('angkatan'));
-		}
-        if($this->input->post('kelas'))
-		{
-			$this->db->where('kelas', $this->input->post('kelas'));
-		}
-        if($this->input->post('npm'))
-		{
-			$this->db->like('npm', $this->input->post('npm'));
-		}
-		if($this->input->post('name'))
-		{
-			$this->db->like('name', $this->input->post('name'));
-		}
-		
+        if ($this->input->post('angkatan')) {
+            $this->db->where('angkatan', $this->input->post('angkatan'));
+        }
+        if ($this->input->post('kelas')) {
+            $this->db->where('kelas', $this->input->post('kelas'));
+        }
+        if ($this->input->post('npm')) {
+            $this->db->like('npm', $this->input->post('npm'));
+        }
+        if ($this->input->post('name')) {
+            $this->db->like('name', $this->input->post('name'));
+        }
+
         $this->db->from($this->table);
         $this->db->where('role_id =', 2);
 
@@ -78,21 +74,20 @@ class Userdatabase_model extends CI_Model
     }
 
     public function get_list_angkatan()
-	{
-		$this->db->select('angkatan');
+    {
+        $this->db->select('angkatan');
         $this->db->where('role_id =', 2);
-		$this->db->from($this->table);
-		$this->db->order_by('angkatan','asc');
-		$query = $this->db->get();
-		$result = $query->result();
+        $this->db->from($this->table);
+        $this->db->order_by('angkatan', 'asc');
+        $query = $this->db->get();
+        $result = $query->result();
 
-		$angkatan = array();
-		foreach ($result as $row) 
-		{
-			$angkatan[] = $row->angkatan;
-		}
-		return $angkatan;
-	}
+        $angkatan = array();
+        foreach ($result as $row) {
+            $angkatan[] = $row->angkatan;
+        }
+        return $angkatan;
+    }
 
     function get_datatables()
     {

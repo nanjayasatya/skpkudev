@@ -28,7 +28,7 @@
                                     <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap" value="<?= set_value('name'); ?>">
+                                        <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap" maxlength="40" value="<?= set_value('name'); ?>">
                                         <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
@@ -36,12 +36,12 @@
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" class="form-control form-control-user" id="npm" name="npm" placeholder="NPM" value="<?= set_value('npm'); ?>">
+                                        <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="8" class="form-control form-control-user" id="npm" name="npm" placeholder="NPM" value="<?= set_value('npm'); ?>">
                                         <?= form_error('npm', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="number" class="form-control form-control-user" id="angkatan" name="angkatan" placeholder="Angkatan" value="<?= set_value('angkatan'); ?>">
+                                            <input type="number" class="form-control form-control-user" id="angkatan" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" name="angkatan" placeholder="Angkatan" value="<?= set_value('angkatan'); ?>">
                                             <?= form_error('angkatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <!--<div class="col-sm-6">
