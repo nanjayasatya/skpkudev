@@ -129,7 +129,7 @@ class Auth extends CI_Controller
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Akun belum diaktifkan!</div>');
+            Akun tidak aktif!</div>');
                 redirect('auth');
             }
         } else {

@@ -268,18 +268,18 @@ class Admin extends CI_Controller
     public function userDatabase()
     {
         $this->load->helper('url');
-		$this->load->helper('form');
+        $this->load->helper('form');
         $data['title'] = 'User Database Management';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
         $angkatan_list = $this->userdatabase->get_list_angkatan();
 
-		$opt = array('' => '');
-		foreach ($angkatan_list as $angkatan) {
-			$opt[$angkatan] = $angkatan;
-		}
+        $opt = array('' => '');
+        foreach ($angkatan_list as $angkatan) {
+            $opt[$angkatan] = $angkatan;
+        }
 
-        $data['angkatan'] = form_dropdown('',$opt,'','id="angkatan" class="form-control"');
+        $data['angkatan'] = form_dropdown('', $opt, '', 'id="angkatan" class="form-control"');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/admin/admin_sidebar', $data);
@@ -365,6 +365,7 @@ class Admin extends CI_Controller
             $angkatan = $this->input->post('angkatan');
             $kelas = $this->input->post('kelas');
             $id = $this->uri->segment(3);
+            $is_active = $this->input->post('is_active');
             //Tambahin dibawah ini untuk data yang lain
 
             //Dibawah ini udah masukin ke db
@@ -373,6 +374,7 @@ class Admin extends CI_Controller
             $this->db->set('npm', $npm);
             $this->db->set('angkatan', $angkatan);
             $this->db->set('kelas', $kelas);
+            $this->db->set('is_active', $is_active);
             $this->db->where('id', $id);
             $this->db->update('user');
             //$this->userdatabase->updateUser(); <-- dipake kalo functionnya udah jalan, check model

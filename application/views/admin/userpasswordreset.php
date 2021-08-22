@@ -72,10 +72,25 @@
                                             <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="email">Email</label>
-                                        <input class="form-control" id="email" name="email" type="text" placeholder="" value="<?= $ufd['email']; ?>" readonly />
-                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label class="small mb-1" for="email">Email</label>
+                                            <input class="form-control" id="email" name="email" type="text" placeholder="" value="<?= $ufd['email']; ?>" readonly />
+                                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <?php
+                                        if ($ufd['is_active'] == 1) {
+                                            $active_status = 'Aktif';
+                                            $active_value = '1';
+                                        } else if ($ufd['is_active'] == 0) {
+                                            $active_status = 'Tidak Aktif';
+                                            $active_value = '0';
+                                        }
+                                        ?>
+                                        <div class="col-lg-6">
+                                            <label class="small mb-1" for="is_active">Status Aktivasi</label>
+                                            <input class="form-control" id="is_active" name="is_active" type="text" placeholder="" value="<?= $active_status; ?>" readonly />
+                                        </div>
                                     </div>
                                 </form>
                         </div>

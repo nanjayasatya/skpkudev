@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                   <label class="small mb-1" for="name">Nama Lengkap</label>
-                  <input class="form-control" id="name" name="name" ntype="text" placeholder="" value="<?= $ufd['name']; ?>" />
+                  <input class="form-control" id="name" name="name" ntype="text" placeholder="" maxlength="40" value="<?= $ufd['name']; ?>" />
                   <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
@@ -57,25 +57,54 @@
                 <div class="row">
                   <div class="form-group col-lg-6">
                     <label class="small mb-1" for="npm">NPM</label>
-                    <input class="form-control" id="npm" name="npm" type="text" placeholder="" value="<?= $ufd['npm']; ?>" />
+                    <input class="form-control" id="npm" name="npm" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="8" placeholder="" value="<?= $ufd['npm']; ?>" />
                     <?= form_error('npm', '<small class="text-danger pl-3">', '</small>'); ?>
                   </div>
                   <div class="form-group col-lg-3">
                     <label class="small mb-1" for="kelas">Angkatan</label>
-                    <input class="form-control" id="angkatan" name="angkatan" type="text" placeholder="" value="<?= $ufd['angkatan']; ?>" />
+                    <input class="form-control" id="angkatan" name="angkatan" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" placeholder="" value="<?= $ufd['angkatan']; ?>" />
                     <?= form_error('angkatan', '<small class="text-danger pl-3">', '</small>'); ?>
 
                   </div>
                   <div class="form-group col-lg-3">
-                    <label class="small mb-1" for="kelas">Kelas</label>
+                    <!--<label class="small mb-1" for="kelas">Kelas</label>
                     <input class="form-control" id="kelas" name="kelas" type="text" placeholder="" value="<?= $ufd['kelas']; ?>" />
+                    <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>-->
+                    <label class="small mb-1" for="kelas">Kelas</label>
+                    <select name="kelas" id="kelas" class="form-control">
+                      <option value="<?= $ufd['kelas']; ?>"><?= $ufd['kelas']; ?></option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+
+                    </select>
                     <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="small mb-1" for="email">Email</label>
-                  <input class="form-control" id="email" name="email" type="text" placeholder="" value="<?= $ufd['email']; ?>" />
-                  <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label class="small mb-1" for="email">Email</label>
+                    <input class="form-control" id="email" name="email" type="text" placeholder="" value="<?= $ufd['email']; ?>" />
+                    <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                  </div>
+                  <div class="col-lg-6">
+                    <?php
+                    if ($ufd['is_active'] == 1) {
+                      $active_status = 'Aktif';
+                      $active_value = '1';
+                    } else if ($ufd['is_active'] == 0) {
+                      $active_status = 'Tidak Aktif';
+                      $active_value = '0';
+                    }
+                    ?>
+                    <label class="small mb-1" for="is_active">Status</label>
+                    <select name="is_active" id="is_active" class="form-control">
+                      <option value="<?= $active_value; ?>"><?= $active_status; ?></option>
+                      <option value="1">Aktif</option>
+                      <option value="0">Tidak Aktif</option>
+                    </select>
+                  </div>
                 </div>
 
             </div>
