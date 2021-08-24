@@ -79,7 +79,7 @@ class User extends CI_Controller
     //Export SKP dalam bentuk PDF. 
     public function skpexport()
     {
-        //$this->pdfqrcodegenerate();
+        $this->pdfqrcodegenerate();
         $npm = $this->session->userdata('npm');
         $countskp = $this->skp->CountAllSKPList();
         if ($countskp['COUNT(id)'] < 2) {
@@ -133,7 +133,7 @@ class User extends CI_Controller
             foreach ($datauser as $du) {
                 $pdf->Cell(276, 8, 'Daftar Total SKP', 0, 1, 'C');
                 $pdf->Ln(5);
-                //$pdf->Image('assets/user_directory/' . $npm . '/' . $npm . '.png', 230, 65, 38, 38, 'PNG');
+                $pdf->Image('assets/user_directory/' . $npm . '/' . $npm . '.png', 230, 65, 38, 38, 'PNG');
                 $pdf->SetFont('Metropolis', '', 12);
                 $pdf->Cell(30, 10, 'Mahasiswa', 0, 0, 'L');
                 $pdf->Cell(10, 10, ':', 0, 0, 'L');
@@ -225,7 +225,7 @@ class User extends CI_Controller
                 $pdf->Cell(40, 10, 'SKP A', 1, 0, 'C');
                 $pdf->Cell(20, 10, $suma, 1, 0, 'C');
                 $pdf->SetFont('Metropolis-Bold', '', 12);
-                $pdf->Cell(50, 10, $skp_a_count['COUNT(id)'] . '/' . $skp_global['skp_a_min'] . ' Kegiatan Wajib', 1, 0, 'C');
+                $pdf->Cell(50, 10, $skp_a_count['COUNT(id)'] . '/' . $skp_a_min . ' Kegiatan Wajib', 1, 0, 'C');
                 $pdf->Ln(10);
             }
             //Total SKP B.
