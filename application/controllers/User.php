@@ -79,7 +79,7 @@ class User extends CI_Controller
     //Export SKP dalam bentuk PDF. 
     public function skpexport()
     {
-        $this->pdfqrcodegenerate();
+        //$this->pdfqrcodegenerate();
         $npm = $this->session->userdata('npm');
         $countskp = $this->skp->CountAllSKPList();
         if ($countskp['COUNT(id)'] < 2) {
@@ -94,6 +94,18 @@ class User extends CI_Controller
             $skpdataB = $this->skp->GetListSKPDataB();
             $skpsumdataB = $this->skp->SumTotalSKPUserB();
             $skp_req = $this->skp->GetSKPRequirements();
+            $skp_global = $this->skp->GetGlobalSKPRequirements();
+            $skp_a_count = $this->skp->CountTotalSKPA();
+            $skp_b_count = $this->skp->GetStatListSKPDataBAcceptedPrint();
+
+            if ($skp_req == NULL) {
+                $skp_min = $skp_global['skp_min'];
+                $skp_a_min = $skp_global['skp_a_min'];
+            } else {
+                $skp_min = $skp_req['skp_min'];
+                $skp_a_min = $skp_req['skp_a_min'];
+            }
+
             $bem_status = $this->db->get('bem_status', ['id' => 1])->result_array();
             $ia = 1;
             $ib = 1;
@@ -103,6 +115,7 @@ class User extends CI_Controller
             //Load Library PDF.
             $this->load->library('PDFE');
             $pdf = new FPDF;
+
 
 
             //Page Setting.
@@ -120,7 +133,7 @@ class User extends CI_Controller
             foreach ($datauser as $du) {
                 $pdf->Cell(276, 8, 'Daftar Total SKP', 0, 1, 'C');
                 $pdf->Ln(5);
-                $pdf->Image('assets/user_directory/' . $npm . '/' . $npm . '.png', 230, 65, 38, 38, 'PNG');
+                //$pdf->Image('assets/user_directory/' . $npm . '/' . $npm . '.png', 230, 65, 38, 38, 'PNG');
                 $pdf->SetFont('Metropolis', '', 12);
                 $pdf->Cell(30, 10, 'Mahasiswa', 0, 0, 'L');
                 $pdf->Cell(10, 10, ':', 0, 0, 'L');
@@ -208,9 +221,11 @@ class User extends CI_Controller
                     $suma = "0";
                 }
                 $pdf->SetFont('Metropolis-Bold', '', 14);
-                $pdf->Cell(105, 10, '', 0, 0, 'C');
+                $pdf->Cell(75, 10, '', 0, 0, 'C');
                 $pdf->Cell(40, 10, 'SKP A', 1, 0, 'C');
                 $pdf->Cell(20, 10, $suma, 1, 0, 'C');
+                $pdf->SetFont('Metropolis-Bold', '', 12);
+                $pdf->Cell(50, 10, $skp_a_count['COUNT(id)'] . '/' . $skp_global['skp_a_min'] . ' Kegiatan Wajib', 1, 0, 'C');
                 $pdf->Ln(10);
             }
             //Total SKP B.
@@ -218,37 +233,64 @@ class User extends CI_Controller
                 if (empty($sumb)) {
                     $sumb = "0";
                 }
-                $pdf->Cell(105, 10, '', 0, 0, 'C');
+                $pdf->SetFont('Metropolis-Bold', '', 14);
+                $pdf->Cell(75, 10, '', 0, 0, 'C');
                 $pdf->Cell(40, 10, 'SKP B', 1, 0, 'C');
                 $pdf->Cell(20, 10, $sumb, 1, 0, 'C');
+                $pdf->Cell(50, 10, $skp_b_count['COUNT(id)'] . ' Kegiatan', 1, 0, 'C');
                 $pdf->Ln(10);
+            }
+            //Atur minimal SKP Poin yang mencukupi
+            if ($skp_a_count['COUNT(id)'] < $skp_a_min) {
+                $setcolor = $pdf->SetTextColor(255, 0, 0); //Warna masih mismatch
+                $infoskpatotal = ' SKP A masih Kurang ';
+                $a_skpa = '255';
+                $b_skpa = '0';
+                $c_skpa = '0';
+                $tl = '1';
+            } else {
+                $setcolor = $pdf->SetTextColor(255, 0, 0); //Warna masih mismatch
+                $infoskpatotal = '';
+                $a_skpa = '0    ';
+                $b_skpa = '0';
+                $c_skpa = '0';
+                $tl = '0';
+            }
+
+            if ($suma + $sumb <= $skp_min) {
+                $setfontcolor = $pdf->SetTextColor(255, 0, 0); //Warna masih mismatch
+                $a = '255';
+                $b = '0';
+                $c = '0';
+                $infoskptotal = ' Total SKP belum mencukupi ';
+            } else {
+                $setfontcolor = $pdf->SetTextColor(8, 175, 36); //Warna masih mismatch
+                $a = '8';
+                $b = '175';
+                $c = '36';
+                $infoskptotal = ' Total SKP sudah mencukupi ';
             }
 
             //Total Seluruh SKP.
             $pdf->Cell(105, 10, '', 0, 0, 'C');
             $pdf->SetFont('Metropolis', '', 14);
+            $pdf->SetTextColor(0, 0, 0);
             $pdf->Cell(60, 10, 'Total Seluruh SKP', 0, 0, 'C');
-            //$pdf->Cell(5, 10, ':', 0, 0, 'L');
-            $pdf->SetFont('Metropolis-Bold', '', 12);
+            $pdf->SetFont('Metropolis-Bold', '', 14);
             $pdf->Ln();
-            $pdf->Cell(105, 10, '', 0, 0, 'C');
-            $pdf->Cell(60, 10, $suma + $sumb . ' ' . '/ ' . $skp_req['skp_min'], 1, 0, 'C');
-
-            //Atur minimal SKP Poin yang mencukupi
-            if ($suma + $sumb <= $skp_req['skp_min']) {
-                $setcolor = $pdf->SetTextColor(255, 0, 0);
-                $infoskp = '*Total SKP Belum mencukupi*';
-            } else {
-                $setcolor = $pdf->SetTextColor(8, 175, 36);
-                $infoskp = '*Total SKP Sudah mencukupi*';
-            }
+            $pdf->Cell(80, 10, '', 0, 0, 'C');
+            $pdf->Cell(40, 10, $suma + $sumb . ' ' . '/ ' . $skp_min, 1, 0, 'C');
+            $pdf->SetFont('Metropolis-Bold', '', 11);
+            $pdf->SetTextColor($a, $b, $c);
+            $pdf->Cell(60, 10, $infoskptotal, 1, 0, 'C');
+            $pdf->Ln();
+            $pdf->Cell(80, 10, '', 0, 0, 'C');
+            $pdf->Cell(40, 10, '', $tl, 0, 'C');
+            $pdf->SetTextColor($a_skpa, $b_skpa, $c_skpa);
+            $pdf->Cell(60, 10, $infoskpatotal, $tl, 0, 'C');
             $pdf->Ln(5);
-            $setcolor;
-            $pdf->Cell(105, 10, '', 0, 0, 'C');
-            $pdf->Ln();
-            $pdf->Cell(105, 10, '', 0, 0, 'C');
-            $pdf->Cell(60, 10, $infoskp, 0, 0, 'C');
             $pdf->Ln(10);
+            $pdf->SetTextColor(0, 0, 0);
             //TTD BEM (Ganti Properties TTD dan STAMPEL di Database ya)
             foreach ($bem_status as $bs) {
                 $pdf->SetTextColor(0, 0, 0);
@@ -256,8 +298,8 @@ class User extends CI_Controller
                 $pdf->Ln(5);
                 $pdf->Cell(275, 10, 'Gubernur BEM FK UWKS ', 0, 0, 'C');
                 $pdf->Ln(30);
-                $pdf->Image($bs['gubem_ttd'], 125, 131, 40);
-                $pdf->Image($bs['gubem_stampel'], 140, 138, 30);
+                $pdf->Image($bs['gubem_ttd'], 135, 131, 40);
+                $pdf->Image($bs['gubem_stampel'], 122, 138, 30);
                 $pdf->SetFont('Metropolis', '', 12);
                 $pdf->Cell(275, 10, $bs['gubem_name'], 0, 0, 'C');
                 $pdf->Ln(5);
@@ -361,9 +403,22 @@ class User extends CI_Controller
 
         $data['userDatabase'] = $this->db->get('user')->result_array();
 
-        $data['skp_req'] = $this->skp->GetSKPRequirements();
+        $skp_req = $this->skp->GetSKPRequirements();
+        $skp_global = $this->skp->GetGlobalSKPRequirements();
+
+        if ($skp_req == NULL) {
+            $skp_min = $skp_global;
+            $skp_a_min = $skp_global['skp_a_min'];
+        } else {
+            $skp_min = $skp_req;
+            $skp_a_min = $skp_req['skp_a_min'];
+        }
+
+        $data['skp_req'] = $skp_min;
 
         $data['skp_a_ref'] =  $this->db->get_where('skp_a_ref')->result_array();
+
+        $data['skp_global'] = $this->skp->GetGlobalSKPRequirements();
         $test = $this->skp->GetListSKPDataA();
 
 

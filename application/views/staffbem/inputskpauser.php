@@ -100,6 +100,8 @@
                                         $badge = 'badge bg-green text-white rounded-pill';
                                     } else if ($sud['posisi'] == "Belum Mengikuti") {
                                         $badge = 'badge bg-red text-white rounded-pill';
+                                    } else {
+                                        $badge = 'badge bg-green text-white rounded-pill';
                                     }
                                     ?>
                                     <td class="text-center">

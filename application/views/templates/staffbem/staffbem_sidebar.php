@@ -16,6 +16,10 @@
                         <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                         SKP Database
                     </a>
+                    <!--<a class="nav-link" href="<?= base_url('staffbem/skprequirements'); ?>">
+                        <div class="nav-link-icon"><i class="fas fa-book"></i></div>
+                        SKP Requirements
+                    </a>-->
                     <!--<div class="nav accordion" id="KegiatanCollapse">
                         <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseKegiatan" aria-expanded="false" aria-controls="collapseKegiatan">
                             <div class="nav-link-icon"><i class="fas fa-wrench"></i></div>

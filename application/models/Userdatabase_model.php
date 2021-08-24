@@ -138,11 +138,22 @@ class Userdatabase_model extends CI_Model
     public function GetSKPRequirements($skpreq)
     {
         $angkatan = $skpreq;
-        $query = "SELECT `skp_min`
+        $query1 = "SELECT * 
+                   FROM `skp_req` 
+                   WHERE `angkatan` LIKE $angkatan";
+        $skp_req_global = $this->db->query($query1)->row_array();
+
+        if ($skp_req_global == NULL) {
+            $angkatan = '0';
+        } else {
+            $angkatan = $skpreq;
+        }
+
+        $query2 = "SELECT `skp_min`
         FROM `skp_req`
         WHERE `angkatan` = $angkatan
         ";
-        $result = $this->db->query($query)->row_array();
+        $result = $this->db->query($query2)->row_array();
         if ($result['skp_min'] == NULL) {
             return '0';
         } else {

@@ -151,6 +151,7 @@ if (empty($sdA)) {
                         </div>
                     </div>
                     <?php
+
                     $skp_min = $skp_req['skp_min'];
                     if ($sdB + $sdA < $skp_min) {
                         $card_info = 'card bg-danger border-0';

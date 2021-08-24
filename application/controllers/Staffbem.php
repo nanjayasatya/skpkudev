@@ -229,7 +229,6 @@ class Staffbem extends CI_Controller
         $data['title'] = 'SKP Database';
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
 
-
         $data['userDatabaseMahasiswa'] = $this->db->get('user')->result_array();
         $angkatan_list = $this->userdatabase->get_list_angkatan();
 
@@ -256,8 +255,6 @@ class Staffbem extends CI_Controller
         $skpdata['skp_a_ref'] = $this->db->get('skp_a_ref')->result_array();
         $userdata = $this->db->get_where('user', ['id' => $this->uri->segment(3)])->row_array();
         $npm = $userdata['npm'];
-
-
 
         $data['userDatabase'] = $this->db->get('user')->result_array();
 
@@ -288,6 +285,11 @@ class Staffbem extends CI_Controller
         } else {
             $event_ref = $this->input->post('event');
             $skp_a_ref = $this->db->get_where('skp_a_ref', ['event_ref' => $event_ref])->row_array();
+            if ($this->input->post('posisi') == 'Telah Mengikuti') {
+                $skp_req = '1';
+            } else {
+                $skp_req = '0';
+            }
 
             $data = [
                 'npm' => $npm,
@@ -296,7 +298,8 @@ class Staffbem extends CI_Controller
                 'tahun' => $this->input->post('tahun'),
                 'posisi' => $this->input->post('posisi'),
                 'bobot' => $this->input->post('bobot'),
-                'skp_a_ref' => $skp_a_ref['id']
+                'skp_a_ref' => $skp_a_ref['id'],
+                'skp_req' => $skp_req
             ];
             $this->db->insert('total_user_skp_a', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -352,17 +355,36 @@ class Staffbem extends CI_Controller
             $tahun = $this->input->post('tahun');
             $posisi = $this->input->post('posisi');
             $bobot = $this->input->post('bobot');
+            if ($posisi == 'Telah Mengikuti') {
+                $skp_req = '1';
+            } else {
+                $skp_req = '0';
+            }
             $this->db->set('event', $event);
             $this->db->set('tahun', $tahun);
             $this->db->set('posisi', $posisi);
             $this->db->set('bobot', $bobot);
             $this->db->set('skp_a_ref', $skp_a_ref['id']);
+            $this->db->set('skp_req', $skp_req);
             $this->db->where('id', $this->uri->segment(3));
             $this->db->update('total_user_skp_a');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                         Data SKP A Mahasiswa berhasil diubah!</div>');
             redirect('staffbem/inputskpauser/' . $udata['id']);
         }
+    }
+
+    public function skprequirements()
+    {
+        $data['title'] = 'SKP Requirements';
+        $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
+        $data['skp_req'] = $this->skp->GetAllSKPRequirements();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/staffbem/staffbem_sidebar', $data);
+        $this->load->view('templates/staffbem/staffbem_topbar', $data);
+        $this->load->view('staffbem/skprequirements', $data);
+        $this->load->view('templates/footer');
     }
 
     public function checkskpauthconfirm()

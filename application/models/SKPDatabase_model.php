@@ -112,6 +112,16 @@ class SKPDatabase_model extends CI_Model
         ";
         return $this->db->query($query)->result_array();
     }
+
+    public function GetStatListSKPDataBAcceptedPrint()
+    {
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT COUNT(id)
+                   FROM `total_user_skp_b`
+                   WHERE `npm` = $npm
+        ";
+        return $this->db->query($query)->row_array();
+    }
     //Function SKP B (Mendapatkan seluruh data SKP B oleh Mahasiswa).
     public function GetListSKPDataB()
     {
@@ -159,14 +169,33 @@ class SKPDatabase_model extends CI_Model
         ";
         return $this->db->query($query)->row_array();
     }
+
+    public function CountTotalSKPA()
+    {
+        $npm = $this->session->userdata('npm');
+        $query = "SELECT COUNT(id)
+                   FROM `total_user_skp_a`
+                   WHERE `npm` = $npm
+        ";
+        return $this->db->query($query)->row_array();
+    }
     //Function SKP Requirements (Melihat minimal SKP per angkatan).
     public function GetSKPRequirements()
     {
         $userinfo = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
         $angkatan = $userinfo['angkatan'];
-        $query = "SELECT `skp_min`
+        $query = "SELECT *
         FROM `skp_req`
         WHERE `angkatan` = $angkatan
+        ";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function GetGlobalSKPRequirements()
+    {
+        $query = "SELECT *
+                  FROM `skp_req`
+                  WHERE `angkatan` = 0
         ";
         return $this->db->query($query)->row_array();
     }

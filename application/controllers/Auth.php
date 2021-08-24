@@ -84,7 +84,7 @@ class Auth extends CI_Controller
                         'name' => $user['name'],
                     ];
                     $this->session->set_userdata($data);
-                    $this->_userloginSendTelegram();
+                    //$this->_userloginSendTelegram();
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else {
