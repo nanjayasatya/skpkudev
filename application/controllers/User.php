@@ -24,10 +24,10 @@ class User extends CI_Controller
     {
         date_default_timezone_set('Asia/Bangkok');
         $event = $this->input->post('event');
-        $event_correction = ucwords(strtolower($event));
+        //$event_correction = ucwords(strtolower($event));
         $MSG = "&#10071; Informasi Validasi SKP Baru
         \n&#128273 NPM: " . $this->input->post('npm') . "
-        \n&#128221; Keterangan: " . $event_correction . "
+        \n&#128221; Keterangan: " . $this->input->post('event') . "
         \n&#127941; Posisi: " . $this->input->post('posisi') . "
         \n&#128345; Tahun: " . $this->input->post('tahun') . "
         \n&#128308; Bobot: " . $this->input->post('bobot') . "
