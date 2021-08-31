@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="form-group col-lg-7 text-center">
                                     <label for="posisi" class="font-weight-700">Posisi</label>
-                                    <input type="text" class="form-control" id="posisi" name="posisi" placeholder="" value="<?= $dv['posisi']; ?>" >
+                                    <input type="text" class="form-control" id="posisi" name="posisi" placeholder="" maxlength="18" value="<?= $dv['posisi']; ?>" >
                                     <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="form-group col-lg-7 text-center">
