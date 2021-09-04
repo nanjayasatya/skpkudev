@@ -63,17 +63,12 @@
                                     <?= form_error('bobot', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
 
-                                <!--<div class="text-center col-lg-7">
-                                    <img src="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="img-thumbnail"></img>
-                                </div> -->
                                 <div class="text-center col-lg-7">
-                                    <a target="_blank" href="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="btn btn-success btn-icon-split mt-2">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-eye"></i>
-                                        </span>
-                                        <span class="text" style="width:160px">Preview Sertifikat</span>
-                                    </a>
+                                    <!--<img src="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="img-thumbnail"></img>-->
+                                    <embed src= "<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" width= "720" height= "560">
                                 </div>
+
+                               
                                 <!--<?php foreach ($detailevent as $ed) : ?>
                                     <div class="row mt-2">
                                         <div class="col-lg 7">
@@ -106,8 +101,27 @@
                                     </div>
                                 <?php endforeach; ?> -->
 
-                                <div class="row mt-3 mb-5">
-                                    <div class="col-lg 7">
+                                
+
+
+
+
+
+                            <?php endforeach; ?>
+                            </div>
+                            <div class="form-group">
+                                <div class="text-center col-xl">
+                                    <a target="_blank" href="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="btn btn-success btn-icon-split mt-2">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                        <span class="text" style="width:160px">Preview Sertifikat</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3 mb-5">
+                                    <div class="col-xl text-center">
                                         <a href="<?= base_url('staffbem/validasiskp'); ?>" class="btn btn-dark btn-icon-split mt-2">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-arrow-left"></i>
@@ -130,13 +144,6 @@
 
                                     </div>
                                 </div>
-
-
-
-
-
-                            <?php endforeach; ?>
-                            </div>
 
 
                             <!-- MODAL -->
