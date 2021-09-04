@@ -606,12 +606,15 @@ class Staffbem extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['npm' => $this->session->userdata('npm')])->row_array();
         $data['detailskpvalidation'] = $this->skp->GetSpecificUserSKPValidationData();
         $detailskp = $this->skp->GetSpecificUserSKPValidationData();
+        $idskp = $this->uri->segment(3);
+        
 
         foreach ($detailskp as $ds) :
             $event_detail = $ds['event'];
 
         endforeach;
         $data['detailevent'] = $this->db->get_where('event_data', ['name' => $event_detail])->result_array();
+        $detailevent = $this->db->get_where('validation_skp_user_pending', ['id' => $idskp])->row_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim', [
             'required' => 'Nama harus diisi!',
@@ -638,11 +641,15 @@ class Staffbem extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/staffbem/staffbem_sidebar', $data);
-            $this->load->view('templates/staffbem/staffbem_topbar', $data);
-            $this->load->view('staffbem/detailvalidasi', $data);
-            $this->load->view('templates/footer');
+            if ($detailevent['status'] == 0){
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/staffbem/staffbem_sidebar', $data);
+                $this->load->view('templates/staffbem/staffbem_topbar', $data);
+                $this->load->view('staffbem/detailvalidasi', $data);
+                $this->load->view('templates/footer');
+            } else {
+                redirect('staffbem/validasiskp');
+            }
         } else {
             $skpproof = $this->skp->GetSpecificUserSKPValidationProof();
 
