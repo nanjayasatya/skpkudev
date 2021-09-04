@@ -123,12 +123,12 @@
                             <input id="csrf_token " type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                             <div class="form-group text-center mt-3">
                                 <label for="event" class="font-weight-700">Nama Kegiatan/Keterangan</label>
-                                <input type="text" class="form-control" id="event" name="event" placeholder="" value="<?= set_value('event'); ?>">
+                                <input type="text" class="form-control" id="event" name="event" placeholder="" maxlength="70" value="<?= set_value('event'); ?>">
                                 <?= form_error('event', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group text-center">
                                 <label for="posisi" class="font-weight-700">Posisi</label>
-                                <input type="text" class="form-control" id="posisi" name="posisi" placeholder="" value="<?= set_value('posisi'); ?>">
+                                <input type="text" class="form-control" id="posisi" name="posisi" placeholder="" maxlength="18" value="<?= set_value('posisi'); ?>">
                                 <?= form_error('posisi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <!--<div class="form-group text-center">
