@@ -63,7 +63,7 @@
                                     <?= form_error('bobot', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
 
-                                <div class="text-center col-lg-7">
+                                <div class="text-center">
                                     <!--<img src="<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" class="img-thumbnail"></img>-->
                                     <embed src= "<?= base_url('assets/user_directory/') . $dv['npm'] . "/" . $dv['skp_proof']; ?>" width= "720" height= "560">
                                 </div>
