@@ -254,7 +254,7 @@ class User extends CI_Controller
             } else {
                 $setcolor = $pdf->SetTextColor(255, 0, 0); //Warna masih mismatch
                 $infoskpatotal = '';
-                $a_skpa = '0    ';
+                $a_skpa = '0';
                 $b_skpa = '0';
                 $c_skpa = '0';
                 $tl = '0';
