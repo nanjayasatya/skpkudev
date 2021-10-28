@@ -617,10 +617,10 @@ class User extends CI_Controller
                         redirect('user/daftarvalidasi');
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                        Data gagal di input, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
-                        $upload_gagal = $this->upload->display_errors();
-                        throw new Exception($upload_gagal);
-                        echo $upload_gagal;
+                        Data gagal di input, file bukti tidak sesuai kriteria (tidak jpg, pdf atau png/melebihi 2 MB)</div>');
+                        //$upload_gagal = $this->upload->display_errors();
+                        //echo $upload_gagal;
+                        redirect('user/daftarvalidasi');
                     }
                 }
             }
