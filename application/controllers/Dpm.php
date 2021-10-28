@@ -6,6 +6,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // BY NYOMAN SATIYA NANJAYA SADHA (2018D)
 // @nanjayasatya
 
+//SENTRY ERROR REPORTING
+Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032' ]);
+
 class Dpm extends CI_Controller
 {
     public function __construct()

@@ -6,6 +6,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // DEVELOPED BY NYOMAN SATIYA NANJAYA SADHA (2018D)
 // @nanjayasatya
 
+//SENTRY ERROR REPORTING
+Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032' ]);
+
 class Auth extends CI_Controller
 {
     //Construct untuk load Helper, Model dan External Function.
@@ -84,7 +87,7 @@ class Auth extends CI_Controller
                         'name' => $user['name'],
                     ];
                     $this->session->set_userdata($data);
-                    $this->_userloginSendTelegram();
+                    //$this->_userloginSendTelegram();
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else {

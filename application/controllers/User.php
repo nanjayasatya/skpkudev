@@ -6,6 +6,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // DEVELOPED BY NYOMAN SATIYA NANJAYA SADHA (2018D)
 // @nanjayasatya
 
+//SENTRY ERROR REPORTING
+Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032' ]);
+
 class User extends CI_Controller
 {
     //Construct untuk load Helper, Model dan External Function.
@@ -615,7 +618,9 @@ class User extends CI_Controller
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                         Data gagal di input, dimohon input ulang data beserta bukti kegiatan/keterangan!</div>');
-                        echo $this->upload->display_errors();
+                        $upload_gagal = $this->upload->display_errors();
+                        throw new Exception($upload_gagal);
+                        echo $upload_gagal;
                     }
                 }
             }

@@ -8,6 +8,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // SEMENTARA DISCONTINUED
 
+//SENTRY ERROR REPORTING
+Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032' ]);
+
 class News extends CI_Controller
 {
     //Construct untuk load Helper, Model dan External Function.
