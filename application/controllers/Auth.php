@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // @nanjayasatya
 
 //SENTRY ERROR REPORTING
-Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032',
+\Sentry\init(['dsn' => 'https://4a7f7e1d5885447288e0031d20183b17@o1054582.ingest.sentry.io/6040032',
              'traces_sample_rate' => 1.0
 ]);
 
