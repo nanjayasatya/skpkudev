@@ -590,7 +590,7 @@ class User extends CI_Controller
                 ]);
             } else {
                 if ($upload_image) {
-                    $config['allowed_types'] = 'jpg|png|pdf';
+                    $config['allowed_types'] = 'jpg|png|pdf|jpeg';
                     $config['max_size'] = '4096';
                     $config['upload_path'] = './assets/user_directory/' . $this->session->userdata('npm');
                     $this->load->library('upload', $config);
